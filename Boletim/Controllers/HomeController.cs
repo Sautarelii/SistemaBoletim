@@ -28,6 +28,7 @@ namespace Boletim.Controllers
         public ActionResult Contatos( Administrador adm)
         {
             //Um comentario qualquer
+            //Comentario Professor
 
             return View(adm);
         }
