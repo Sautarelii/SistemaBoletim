@@ -1,0 +1,35 @@
+﻿@model Boletim.Models.Administrador
+
+@{
+    ViewBag.Title = "Administrador";
+}
+
+@using (Html.BeginForm("Administrador", "Home", FormMethod.Post))
+{
+    <h2>Login</h2>
+    <fieldset>
+        <div>
+            <b>@Html.LabelFor(x => x.Email)</b>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(Metodo => Metodo.Email)
+        </div>
+        <div>
+            <b>@Html.LabelFor(x => x.Senha)</b>
+        </div>
+        <div class="editor-label">
+            @Html.PasswordFor(model => model.Senha)
+            @Html.ValidationMessageFor(Metodo => Metodo.Senha)
+        </div>
+        <br />
+        <p><input type="submit" value="Enviar" /></p>
+        <br />
+    </fieldset>
+}
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval");
+}
+
+@Html.ActionLink("Voltar", "Index", "Home")
+
