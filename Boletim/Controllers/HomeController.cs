@@ -27,7 +27,7 @@ namespace Boletim.Controllers
         [HttpPost]
         public ActionResult Contatos( Administrador adm)
         {
-
+            //Um comentario qualquer
 
             return View(adm);
         }
