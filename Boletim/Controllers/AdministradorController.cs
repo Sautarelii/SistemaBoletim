@@ -5,6 +5,8 @@ namespace Boletim.Controllers
 {
     public class AdministradorController : Controller
     {
+        private object dc;
+
         // GET: Administrador
         public ActionResult Index()
         {
@@ -26,8 +28,5 @@ namespace Boletim.Controllers
 
             return View(administrador);
         }
-        
-     
-        
     }
 }

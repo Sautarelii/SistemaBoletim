@@ -23,19 +23,22 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Início", "Index", "Home")</li>
                     <li>@Html.ActionLink("Administrador", "Administrador", "Home")</li>
-                    <li>@Html.ActionLink("Contato", "pro", "Home")</li>
+                    <li>@Html.ActionLink("Cadastramentos", "Cadastramentos", "Home")</li>
                 </ul>
             </div>
         </div>
     </div>
    
-  <div class="container body-content">
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - Boletim Online</p>
-            </footer>
-        </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+
+
+        <footer>
+
+            <p>&copy; @DateTime.Now.Year - Boletim Online</p>
+        </footer>
+    </div>
 
         @Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")

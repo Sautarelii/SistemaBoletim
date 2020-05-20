@@ -25,12 +25,16 @@ namespace Boletim.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Contatos( Administrador adm)
+        public ActionResult adm( Administrador adm)
         {
             //Um comentario qualquer
             //Comentario Gabriel
 
             return View(adm);
+        }
+        public ActionResult Cadastramentos()
+        {
+            return View();
         }
 
     }
