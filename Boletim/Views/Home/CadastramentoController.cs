@@ -11,11 +11,12 @@ namespace Boletim.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult cadastramentos(CadastramentoController cadastramentos)
+        public ActionResult CadastroAluno()
+
         {
 
 
-            return View(cadastramentos);
+            return View();
         }
     }
       

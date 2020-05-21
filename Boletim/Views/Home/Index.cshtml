@@ -1,5 +1,93 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿@model Boletim.Models.Administrador
+@{
+    ViewBag.Title = "Administrador";
+}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style type="text/css">
+    .login-form {
+        width: 340px;
+        margin: 50px auto;
+    }
 
-<h1> Boletim Online</h1>
-    
+        .login-form form {
+            margin-bottom: 15px;
+            background: #f7f7f7;
+            box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+        }
+
+        .login-form h2 {
+            margin: 0 0 15px;
+        }
+
+    .form-control, .btn {
+        min-height: 38px;
+        border-radius: 2px;
+    }
+
+    .btn {
+        font-size: 15px;
+        font-weight: bold;
+    }
+</style>
+
+<center>
+    <h2>Login</h2>
+</center>
+
+
+
+@using (Html.BeginForm("Index", "Home", FormMethod.Post))
+{
+
+    <div class="login-form">
+        <fieldset>
+            <center>
+                <h2 class="text-center">Administrador</h2>
+                <img src="~/Content/img/Logo.png " alt="" width="80" height="72" />
+
+            </center>
+            <div>
+                <b>@Html.LabelFor(x => x.Email)</b>
+            </div>
+            <div class="form-group">
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Email)
+                    @Html.ValidationMessageFor(Metodo => Metodo.Email)
+                </div>
+            </div>
+            <div>
+                <b>@Html.LabelFor(x => x.Senha)</b>
+            </div>
+            <div class="form-group">
+                <div class="editor-label">
+                    @Html.PasswordFor(model => model.Senha)
+                    @Html.ValidationMessageFor(Metodo => Metodo.Senha)
+                </div>
+            </div>
+
+            <br />
+            <br />
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block">Enviar</button>
+            </div>
+            <br />
+            <div class="clearfix">
+                <label class="pull-left checkbox-inline"><input type="checkbox"> Relembra senha</label>
+                <a href="#" class="pull-right">Esqueceu Senha?</a>
+            </div>
+        </fieldset>
+    </div>
+    @Html.ActionLink("Voltar", "Index", "Home")
+
+}
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval");
+}
+

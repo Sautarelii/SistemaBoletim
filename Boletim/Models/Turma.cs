@@ -7,11 +7,11 @@ namespace Boletim.Models
 {
     public class Turma
     {
-        public string Serie{ get; set; }
+    
 
         public string Aluno{ get; set; }
 
         public string Nome { get; set; }
-        public string Ano { get; set; }
+        public string Rm { get; set; }
     }
 }
