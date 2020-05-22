@@ -220,11 +220,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Administrador.cshtml" />
     <Content Include="Views\Home\Cadastramentos.cshtml" />
-    <Content Include="Views\Home\CadastroAluno.cshtml" />
+    <Content Include="Views\Cadastramento\CadastroAluno.cshtml" />
+    <Content Include="Views\Cadastramento\CadastroProfessor.cshtml" />
+    <Content Include="Views\Cadastramento\CadastroTurma.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Cadastramento\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

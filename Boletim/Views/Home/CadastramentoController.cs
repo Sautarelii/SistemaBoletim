@@ -10,14 +10,24 @@ namespace Boletim.Controllers
         {
             return View();
         }
-        [HttpPost]
-        public ActionResult CadastroAluno()
-
+        public ActionResult Aluno()
         {
-
-
             return View();
         }
+        public ActionResult CadastroAluno()
+        {
+            return View();
+        }
+        public ActionResult CadastroProfessor()
+        {
+            return View();
+        }
+        public ActionResult CadastroTurma()
+        {
+            return View();
+        }
+
+
     }
       
 }

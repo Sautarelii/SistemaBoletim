@@ -1,5 +1,5 @@
 ﻿@model Boletim.Models.Turma
-
+    <br />
 <center>
     <h1>Cadastros</h1>
 </center>
@@ -9,32 +9,25 @@
 <h1>Cadastrar Aluno</h1>
 <br />
 
-<a href=""> <butto style="background: #069cc2; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: none; font-size: 16px;">Cadastrar </butto></a>
+@Html.ActionLink("Cadastrar", "CadastroAluno", "Cadastramento", null, new { @class = "btn btn-primary" })
 <br />
 <br />
 <br />
 <br />
 <h1>Cadastrar Professor </h1>
 <br />
-<a href=""> <butto style="background: #069cc2; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: none; font-size: 16px;">Cadastrar </butto></a>
+@Html.ActionLink("Cadastrar", "CadastroProfessor", "Cadastramento", null, new { @class = "btn btn-primary" })
 <br />
 <br />
 <br />
 <br />
 <h1>Cadastrar Turma</h1>
 <br />
-<a href=""> <butto style="background: #069cc2; border-radius: 6px; padding: 15px; cursor: pointer; color: #fff; border: none; font-size: 16px;">Cadastrar </butto></a>
+@Html.ActionLink("Cadastrar", "CadastroTurma", "Cadastramento", null, new { @class = "btn btn-primary" })
 <br />
 <br />
 
 
-
-<input type="button" class="btn btn-info" '" />
-
-@Html.ActionLink("CadastroAluno", "CadastroAluno", "cadastramentos", routeValues: null, htmlAttributes: new { @class = "btn btn-primary", @role = "button" })
-
-
- <button type="button" onclick="location.href='@Url.Action("CadastroAluno", "Cadastramentos")'"></button>     
 
 <br />
 @Html.ActionLink("Voltar", "Index", "Home")
