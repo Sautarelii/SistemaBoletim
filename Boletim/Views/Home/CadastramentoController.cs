@@ -12,10 +12,13 @@ namespace Boletim.Controllers
         }
         public ActionResult Aluno()
         {
+
             return View();
         }
         public ActionResult CadastroAluno()
         {
+            var appAluno = new SistemaBoletimAlunoAplicaçao().
+
             return View();
         }
         public ActionResult CadastroProfessor()
