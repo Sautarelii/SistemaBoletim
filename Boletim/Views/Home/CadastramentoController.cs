@@ -19,18 +19,7 @@ namespace Boletim.Controllers
         }
         public ActionResult CadastroAluno()
         {
-<<<<<<< HEAD
-            var appAluno = new SistemaBoletimAlunoAplicaçao().
-
             return View();
-=======
-            var appAluno = new SistemaBoletimAlunoAplicaçao();
-
-            var listaDeAlunos = appAluno.ListarTodos(); 
-          
-            return View(listaDeAlunos);
-
->>>>>>> b249c7027d4a872aa3895fa87057d15fcf21a2ff
         }
         public ActionResult CadastroProfessor()
         {
