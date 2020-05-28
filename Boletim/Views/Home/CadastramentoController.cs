@@ -1,5 +1,7 @@
 ﻿using System.Web.Mvc;
+using AlunoAplicaçao;
 using Boletim.Models;
+using Microsoft.Ajax.Utilities;
 
 namespace Boletim.Controllers
 {
@@ -16,7 +18,12 @@ namespace Boletim.Controllers
         }
         public ActionResult CadastroAluno()
         {
-            return View();
+            var appAluno = new SistemaBoletimAlunoAplicaçao();
+
+            var listaDeAlunos = appAluno.ListarTodos(); 
+          
+            return View(listaDeAlunos);
+
         }
         public ActionResult CadastroProfessor()
         {

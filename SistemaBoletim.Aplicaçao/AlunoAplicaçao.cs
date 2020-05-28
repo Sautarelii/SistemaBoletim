@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AlunoAplicaçao
 {
-  public  class AlunoAplicaçao
+  public  class SistemaBoletimAlunoAplicaçao
     {
         private Contexto contexto;
 
