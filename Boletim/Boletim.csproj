@@ -146,7 +146,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Cadastro.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Contexto.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
+    <Compile Include="Controllers\AdministradorsController.cs" />
     <Compile Include="Controllers\CadastroEntities.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -223,6 +225,11 @@
     <Content Include="Views\Cadastramento\CadastroAluno.cshtml" />
     <Content Include="Views\Cadastramento\CadastroProfessor.cshtml" />
     <Content Include="Views\Cadastramento\CadastroTurma.cshtml" />
+    <Content Include="Views\Administradors\Create.cshtml" />
+    <Content Include="Views\Administradors\Delete.cshtml" />
+    <Content Include="Views\Administradors\Details.cshtml" />
+    <Content Include="Views\Administradors\Edit.cshtml" />
+    <Content Include="Views\Administradors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -242,6 +249,16 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SistemaBoletim.Aplicaçao\SistemaBoletim.Aplicaçao.csproj">
+      <Project>{2c6bab3c-6a75-4656-a83e-f535bba38892}</Project>
+      <Name>SistemaBoletim.Aplicaçao</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SistemaBoletim.Dominio\SistemaBoletim.Dominio.csproj">
+      <Project>{7da26596-5e49-46b6-825a-95c687cbf9b9}</Project>
+      <Name>SistemaBoletim.Dominio</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

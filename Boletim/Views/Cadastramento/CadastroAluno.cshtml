@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable< SistemaBoletim.Dominio.Aluno>
+
 @{
     ViewBag.Title = "CadastroAluno";
 }<html>
@@ -10,9 +11,17 @@
          <br />
          <br />
          <br />
-         <Cemter>
+         <Center>
              <h2>Cadastro do Aluno</h2>
-         </Cemter>
+         </Center>
+         <ul>
+             <h1>Lista de Alunos</h1>
+             @foreach (var aluno in Model)
+             {
+                 <li>@aluno.Nome</li>
+             }
+         </ul>
      </div>
+
  </body>
 </html>

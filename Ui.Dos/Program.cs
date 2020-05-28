@@ -5,8 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using SistemaBoletim.Dominio;
-
-
+using AlunoAplicaçao;
 
 namespace Ui.Dos
 {
@@ -14,7 +13,7 @@ namespace Ui.Dos
     {
         static void Main(string[] args)
         {
-            var appAluno = new AlunoApliçacao();
+            var appAluno = new SistemaBoletimAlunoAplicaçao();
 
             // string strQueryUpdate = "UPDATE ALUNO SET Nome = 'Joao Bastista da silva Where idAluno = 4";
             // SqlCommand cmdComandoUpdate = new SqlCommand(strQueryUpdate, minhaConexao);
@@ -28,7 +27,7 @@ namespace Ui.Dos
              Console.Write("Digite o nome do aluno");
              string nome = Console.ReadLine();
 
-             Console.Write("Digite o Telefone");
+             Console.Write("Digite o Telefone"); 
              string Telefone = Console.ReadLine();
 
             Console.Write("Digite a data de Nascimento");
