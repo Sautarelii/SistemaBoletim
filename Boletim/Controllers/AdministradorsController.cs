@@ -12,12 +12,12 @@ namespace Boletim.Controllers
 {
     public class AdministradorsController : Controller
     {
-        private AdministradorLoginEntities db = new AdministradorLoginEntities();
+        private ControleAtualiEntities1 db = new ControleAtualiEntities1();
 
         // GET: Administradors
         public ActionResult Index()
         {
-            return View(db.Administrador.ToList());
+            return View(db.Administradors.ToList());
         }
 
         // GET: Administradors/Details/5
@@ -27,7 +27,7 @@ namespace Boletim.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Administrador administrador = db.Administrador.Find(id);
+            Administrador administrador = db.Administradors.Find(id);
             if (administrador == null)
             {
                 return HttpNotFound();
@@ -46,11 +46,11 @@ namespace Boletim.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Cod_Administrador,Nome_Administrador,Email,Senha")] Administrador administrador)
+        public ActionResult Create([Bind(Include = "Nome_Administrador,Email,Senha")] Administrador administrador)
         {
             if (ModelState.IsValid)
             {
-                db.Administrador.Add(administrador);
+                db.Administradors.Add(administrador);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -65,7 +65,7 @@ namespace Boletim.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Administrador administrador = db.Administrador.Find(id);
+            Administrador administrador = db.Administradors.Find(id);
             if (administrador == null)
             {
                 return HttpNotFound();
@@ -96,7 +96,7 @@ namespace Boletim.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Administrador administrador = db.Administrador.Find(id);
+            Administrador administrador = db.Administradors.Find(id);
             if (administrador == null)
             {
                 return HttpNotFound();
@@ -109,8 +109,8 @@ namespace Boletim.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Administrador administrador = db.Administrador.Find(id);
-            db.Administrador.Remove(administrador);
+            Administrador administrador = db.Administradors.Find(id);
+            db.Administradors.Remove(administrador);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

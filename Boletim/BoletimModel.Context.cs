@@ -13,10 +13,10 @@ namespace Boletim
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class AdministradorLoginEntities : DbContext
+    public partial class ControleAtualiEntities1 : DbContext
     {
-        public AdministradorLoginEntities()
-            : base("name=AdministradorLoginEntities")
+        public ControleAtualiEntities1()
+            : base("name=ControleAtualiEntities1")
         {
         }
     
@@ -25,6 +25,10 @@ namespace Boletim
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Administrador> Administrador { get; set; }
+        public virtual DbSet<Administrador> Administradors { get; set; }
+        public virtual DbSet<Aluno> Alunoes { get; set; }
+        public virtual DbSet<MATERIA> MATERIAs { get; set; }
+        public virtual DbSet<PROFESSOR> PROFESSORs { get; set; }
+        public virtual DbSet<Turma> Turmas { get; set; }
     }
 }

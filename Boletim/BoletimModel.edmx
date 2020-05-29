@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ControleAtualiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Administrador">
+          <Key>
+            <PropertyRef Name="Cod_Administrador" />
+          </Key>
+          <Property Name="Cod_Administrador" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome_Administrador" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Senha" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Aluno">
+          <Key>
+            <PropertyRef Name="idAluno" />
+          </Key>
+          <Property Name="idAluno" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="255" />
+          <Property Name="Telefone" Type="varchar" MaxLength="17" />
+          <Property Name="dataNascimento" Type="date" />
+          <Property Name="dataCadastro" Type="datetime" />
+          <Property Name="dataUltAtualizacao" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MATERIA">
+          <Key>
+            <PropertyRef Name="IdMateria" />
+          </Key>
+          <Property Name="IdMateria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome_Materia" Type="varchar" MaxLength="50" />
+          <Property Name="IdProfessor" Type="int" />
+        </EntityType>
+        <EntityType Name="PROFESSOR">
+          <Key>
+            <PropertyRef Name="idProfessor" />
+          </Key>
+          <Property Name="idProfessor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="255" />
+          <Property Name="Endereco" Type="varchar" MaxLength="255" />
+          <Property Name="Cep" Type="varchar" MaxLength="17" />
+          <Property Name="Telefone" Type="varchar" MaxLength="17" />
+          <Property Name="Celular" Type="varchar" MaxLength="17" />
+          <Property Name="dataNascimento" Type="date" />
+          <Property Name="dataCadastro" Type="datetime" />
+          <Property Name="dataUltAtualizacao" Type="datetime" />
+          <Property Name="IdTurma" Type="int" />
+          <Property Name="IdAluno" Type="int" />
+        </EntityType>
+        <EntityType Name="Turma">
+          <Key>
+            <PropertyRef Name="idTURMA" />
+          </Key>
+          <Property Name="idTURMA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SÉRIE" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <Association Name="FK_ALUNO">
+          <End Role="Aluno" Type="Self.Aluno" Multiplicity="0..1" />
+          <End Role="PROFESSOR" Type="Self.PROFESSOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aluno">
+              <PropertyRef Name="idAluno" />
+            </Principal>
+            <Dependent Role="PROFESSOR">
+              <PropertyRef Name="IdAluno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TURMA">
+          <End Role="Turma" Type="Self.Turma" Multiplicity="0..1" />
+          <End Role="PROFESSOR" Type="Self.PROFESSOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Turma">
+              <PropertyRef Name="idTURMA" />
+            </Principal>
+            <Dependent Role="PROFESSOR">
+              <PropertyRef Name="IdTurma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKKK_Professor">
+          <End Role="PROFESSOR" Type="Self.PROFESSOR" Multiplicity="0..1" />
+          <End Role="MATERIA" Type="Self.MATERIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROFESSOR">
+              <PropertyRef Name="idProfessor" />
+            </Principal>
+            <Dependent Role="MATERIA">
+              <PropertyRef Name="IdProfessor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ControleAtualiModelStoreContainer">
+          <EntitySet Name="Administrador" EntityType="Self.Administrador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Aluno" EntityType="Self.Aluno" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MATERIA" EntityType="Self.MATERIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROFESSOR" EntityType="Self.PROFESSOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Turma" EntityType="Self.Turma" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ALUNO" Association="Self.FK_ALUNO">
+            <End Role="Aluno" EntitySet="Aluno" />
+            <End Role="PROFESSOR" EntitySet="PROFESSOR" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TURMA" Association="Self.FK_TURMA">
+            <End Role="Turma" EntitySet="Turma" />
+            <End Role="PROFESSOR" EntitySet="PROFESSOR" />
+          </AssociationSet>
+          <AssociationSet Name="FKKK_Professor" Association="Self.FKKK_Professor">
+            <End Role="PROFESSOR" EntitySet="PROFESSOR" />
+            <End Role="MATERIA" EntitySet="MATERIA" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ControleAtualiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Administrador">
+          <Key>
+            <PropertyRef Name="Cod_Administrador" />
+          </Key>
+          <Property Name="Cod_Administrador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome_Administrador" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Senha" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Aluno">
+          <Key>
+            <PropertyRef Name="idAluno" />
+          </Key>
+          <Property Name="idAluno" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Telefone" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
+          <Property Name="dataNascimento" Type="DateTime" Precision="0" />
+          <Property Name="dataCadastro" Type="DateTime" Precision="3" />
+          <Property Name="dataUltAtualizacao" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="PROFESSORs" Relationship="Self.FK_ALUNO" FromRole="Aluno" ToRole="PROFESSOR" />
+        </EntityType>
+        <EntityType Name="MATERIA">
+          <Key>
+            <PropertyRef Name="IdMateria" />
+          </Key>
+          <Property Name="IdMateria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome_Materia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdProfessor" Type="Int32" />
+          <NavigationProperty Name="PROFESSOR" Relationship="Self.FKKK_Professor" FromRole="MATERIA" ToRole="PROFESSOR" />
+        </EntityType>
+        <EntityType Name="PROFESSOR">
+          <Key>
+            <PropertyRef Name="idProfessor" />
+          </Key>
+          <Property Name="idProfessor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Endereco" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Cep" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
+          <Property Name="Telefone" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
+          <Property Name="Celular" Type="String" MaxLength="17" FixedLength="false" Unicode="false" />
+          <Property Name="dataNascimento" Type="DateTime" Precision="0" />
+          <Property Name="dataCadastro" Type="DateTime" Precision="3" />
+          <Property Name="dataUltAtualizacao" Type="DateTime" Precision="3" />
+          <Property Name="IdTurma" Type="Int32" />
+          <Property Name="IdAluno" Type="Int32" />
+          <NavigationProperty Name="Aluno" Relationship="Self.FK_ALUNO" FromRole="PROFESSOR" ToRole="Aluno" />
+          <NavigationProperty Name="MATERIAs" Relationship="Self.FKKK_Professor" FromRole="PROFESSOR" ToRole="MATERIA" />
+          <NavigationProperty Name="Turma" Relationship="Self.FK_TURMA" FromRole="PROFESSOR" ToRole="Turma" />
+        </EntityType>
+        <EntityType Name="Turma">
+          <Key>
+            <PropertyRef Name="idTURMA" />
+          </Key>
+          <Property Name="idTURMA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SÉRIE" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PROFESSORs" Relationship="Self.FK_TURMA" FromRole="Turma" ToRole="PROFESSOR" />
+        </EntityType>
+        <Association Name="FK_ALUNO">
+          <End Role="Aluno" Type="Self.Aluno" Multiplicity="0..1" />
+          <End Role="PROFESSOR" Type="Self.PROFESSOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Aluno">
+              <PropertyRef Name="idAluno" />
+            </Principal>
+            <Dependent Role="PROFESSOR">
+              <PropertyRef Name="IdAluno" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FKKK_Professor">
+          <End Role="PROFESSOR" Type="Self.PROFESSOR" Multiplicity="0..1" />
+          <End Role="MATERIA" Type="Self.MATERIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROFESSOR">
+              <PropertyRef Name="idProfessor" />
+            </Principal>
+            <Dependent Role="MATERIA">
+              <PropertyRef Name="IdProfessor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TURMA">
+          <End Role="Turma" Type="Self.Turma" Multiplicity="0..1" />
+          <End Role="PROFESSOR" Type="Self.PROFESSOR" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Turma">
+              <PropertyRef Name="idTURMA" />
+            </Principal>
+            <Dependent Role="PROFESSOR">
+              <PropertyRef Name="IdTurma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ControleAtualiEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Administradors" EntityType="Self.Administrador" />
+          <EntitySet Name="Alunoes" EntityType="Self.Aluno" />
+          <EntitySet Name="MATERIAs" EntityType="Self.MATERIA" />
+          <EntitySet Name="PROFESSORs" EntityType="Self.PROFESSOR" />
+          <EntitySet Name="Turmas" EntityType="Self.Turma" />
+          <AssociationSet Name="FK_ALUNO" Association="Self.FK_ALUNO">
+            <End Role="Aluno" EntitySet="Alunoes" />
+            <End Role="PROFESSOR" EntitySet="PROFESSORs" />
+          </AssociationSet>
+          <AssociationSet Name="FKKK_Professor" Association="Self.FKKK_Professor">
+            <End Role="PROFESSOR" EntitySet="PROFESSORs" />
+            <End Role="MATERIA" EntitySet="MATERIAs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TURMA" Association="Self.FK_TURMA">
+            <End Role="Turma" EntitySet="Turmas" />
+            <End Role="PROFESSOR" EntitySet="PROFESSORs" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ControleAtualiModelStoreContainer" CdmEntityContainer="ControleAtualiEntities1">
+          <EntitySetMapping Name="Administradors">
+            <EntityTypeMapping TypeName="ControleAtualiModel.Administrador">
+              <MappingFragment StoreEntitySet="Administrador">
+                <ScalarProperty Name="Cod_Administrador" ColumnName="Cod_Administrador" />
+                <ScalarProperty Name="Nome_Administrador" ColumnName="Nome_Administrador" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Senha" ColumnName="Senha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Alunoes">
+            <EntityTypeMapping TypeName="ControleAtualiModel.Aluno">
+              <MappingFragment StoreEntitySet="Aluno">
+                <ScalarProperty Name="idAluno" ColumnName="idAluno" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="dataNascimento" ColumnName="dataNascimento" />
+                <ScalarProperty Name="dataCadastro" ColumnName="dataCadastro" />
+                <ScalarProperty Name="dataUltAtualizacao" ColumnName="dataUltAtualizacao" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MATERIAs">
+            <EntityTypeMapping TypeName="ControleAtualiModel.MATERIA">
+              <MappingFragment StoreEntitySet="MATERIA">
+                <ScalarProperty Name="IdMateria" ColumnName="IdMateria" />
+                <ScalarProperty Name="Nome_Materia" ColumnName="Nome_Materia" />
+                <ScalarProperty Name="IdProfessor" ColumnName="IdProfessor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROFESSORs">
+            <EntityTypeMapping TypeName="ControleAtualiModel.PROFESSOR">
+              <MappingFragment StoreEntitySet="PROFESSOR">
+                <ScalarProperty Name="idProfessor" ColumnName="idProfessor" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Endereco" ColumnName="Endereco" />
+                <ScalarProperty Name="Cep" ColumnName="Cep" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Celular" ColumnName="Celular" />
+                <ScalarProperty Name="dataNascimento" ColumnName="dataNascimento" />
+                <ScalarProperty Name="dataCadastro" ColumnName="dataCadastro" />
+                <ScalarProperty Name="dataUltAtualizacao" ColumnName="dataUltAtualizacao" />
+                <ScalarProperty Name="IdTurma" ColumnName="IdTurma" />
+                <ScalarProperty Name="IdAluno" ColumnName="IdAluno" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Turmas">
+            <EntityTypeMapping TypeName="ControleAtualiModel.Turma">
+              <MappingFragment StoreEntitySet="Turma">
+                <ScalarProperty Name="idTURMA" ColumnName="idTURMA" />
+                <ScalarProperty Name="SÉRIE" ColumnName="SÉRIE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
