@@ -8,6 +8,7 @@ CREATE TABLE Turma(
    idTURMA INT NOT NULL IDENTITY(1,1),
    SÉRIE   varchar(5)
 )
+--drop table Turma
 
 --CRIA CHAVE PRIMARIA IDTURMA
 ALTER TABLE TURMA ADD CONSTRAINT PK_TURMA
@@ -24,9 +25,10 @@ CREATE TABLE Aluno(
   Telefone VARCHAR(17),
   --Celular VARCHAR(17),
   dataNascimento DATE,
-  dataCadastro DATETIME DEFAULT GETDATE(),
-  dataUltAtualizacao DATETIME DEFAULT GETDATE()
+  dataCadastro DATE DEFAULT GETDATE(),
+  dataUltAtualizacao DATE DEFAULT GETDATE()
  )
+--drop table aluno
 
 --CRIA CHAVE PRIMARIA IDALUNO 
  ALTER TABLE Aluno ADD CONSTRAINT PK_ALUNO
@@ -43,11 +45,14 @@ CREATE TABLE PROFESSOR(
   Telefone VARCHAR(17),
   Celular VARCHAR(17),
   dataNascimento DATE,
-  dataCadastro DATETIME DEFAULT GETDATE(),
-  dataUltAtualizacao DATETIME,
+  dataCadastro DATE DEFAULT GETDATE(),
+  dataUltAtualizacao DATE DEFAULT GETDATE(),
   IdTurma INT,
   IdAluno INT
  )
+
+ drop table professor
+
 --CRIA CHAVE PRIMARIA IDPROFESSOR
 ALTER TABLE PROFESSOR ADD CONSTRAINT PK_PROFESSOR
 			PRIMARY KEY (idPROFESSOR)
@@ -69,6 +74,8 @@ Nome_Materia varchar(50),
 IdProfessor int,
 )
 
+drop table materia
+
 --CRIA CHAVE PRIMARIA ID MATERIA
 ALTER TABLE MATERIA ADD CONSTRAINT PK_Materia 
 			PRIMARY KEY (IdMateria)
@@ -86,6 +93,8 @@ Nome_Administrador varchar(50),
 Email varchar(50),
 Senha varchar(50),
 )
+
+--drop table administrador
 
 ALTER TABLE ADMINISTRADOR ADD CONSTRAINT PK_ADM
 			PRIMARY KEY (Cod_Administrador)
