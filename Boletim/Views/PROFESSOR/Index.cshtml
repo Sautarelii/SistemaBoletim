@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Boletim.PROFESSOR>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Endereco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cep)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Celular)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dataNascimento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dataCadastro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dataUltAtualizacao)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Aluno.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Turma.SÉRIE)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Endereco)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cep)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Celular)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dataNascimento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dataCadastro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dataUltAtualizacao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Aluno.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Turma.SÉRIE)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idProfessor }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idProfessor }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idProfessor })
+        </td>
+    </tr>
+}
+
+</table>

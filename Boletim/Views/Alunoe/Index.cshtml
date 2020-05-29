@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Boletim.Aluno>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dataNascimento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dataCadastro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dataUltAtualizacao)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dataNascimento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dataCadastro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.dataUltAtualizacao)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.idAluno }) |
+            @Html.ActionLink("Details", "Details", new { id=item.idAluno }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.idAluno })
+        </td>
+    </tr>
+}
+
+</table>

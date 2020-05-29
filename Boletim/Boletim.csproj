@@ -152,8 +152,11 @@
     <Compile Include="Contexto.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\AdministradorsController.cs" />
+    <Compile Include="Controllers\AlunoeController.cs" />
     <Compile Include="Controllers\CadastroEntities.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PROFESSORController.cs" />
+    <Compile Include="Controllers\TurmaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -242,6 +245,21 @@
     <Content Include="Views\Administradors\Details.cshtml" />
     <Content Include="Views\Administradors\Edit.cshtml" />
     <Content Include="Views\Administradors\Index.cshtml" />
+    <Content Include="Views\Alunoe\Create.cshtml" />
+    <Content Include="Views\Alunoe\Delete.cshtml" />
+    <Content Include="Views\Alunoe\Details.cshtml" />
+    <Content Include="Views\Alunoe\Edit.cshtml" />
+    <Content Include="Views\Alunoe\Index.cshtml" />
+    <Content Include="Views\PROFESSOR\Create.cshtml" />
+    <Content Include="Views\PROFESSOR\Delete.cshtml" />
+    <Content Include="Views\PROFESSOR\Details.cshtml" />
+    <Content Include="Views\PROFESSOR\Edit.cshtml" />
+    <Content Include="Views\PROFESSOR\Index.cshtml" />
+    <Content Include="Views\Turma\Create.cshtml" />
+    <Content Include="Views\Turma\Delete.cshtml" />
+    <Content Include="Views\Turma\Details.cshtml" />
+    <Content Include="Views\Turma\Edit.cshtml" />
+    <Content Include="Views\Turma\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
