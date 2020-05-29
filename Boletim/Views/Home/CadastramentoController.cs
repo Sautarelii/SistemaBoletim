@@ -17,15 +17,15 @@ namespace Boletim.Controllers
 
             return View();
         }
-        public ActionResult CadastroAluno()
+        public ActionResult Alunoe()
         {
             return View();
         }
-        public ActionResult CadastroProfessor()
+        public ActionResult Professor()
         {
             return View();
         }
-        public ActionResult CadastroTurma()
+        public ActionResult Turma()
         {
             return View();
         }
