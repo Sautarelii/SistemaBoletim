@@ -1,38 +1,70 @@
-﻿@model Boletim.Models.Turma
-   <html>
+﻿@model Boletim.TURMA
+<html>
+<head>
+</head>
+<style>
+    body {
+        background-color: #4A6398;
+        margin: 100px;
+    }
+
+    .um {
+        width: 100%;
+        color: #000;
+        border: 4px solid #000;
+        height: 1100px;
+        background-color: white;
+        border-radius: 25px;
+        box-sizing: border-box;
+    }
+</style>
 <body>
 
- <br />
-<center>
-    <h1>Cadastros</h1>
-</center>
+    <br />
 
+    <div class="um">
+        <br />
+        <center>
 
-<br />
-<h1>Cadastrar Aluno</h1>
-<br />
+            <h1>Cadastros</h1>
+        </center>
+        <br />
 
-@Html.ActionLink("Cadastrar", "Alunoe", "Cadastramento", null, new { @class = "btn btn-primary" })
-<br />
-<br />
-<br />
-<br />
-<h1>Cadastrar Professor </h1>
-<br />
-@Html.ActionLink("Cadastrar", "Professor", "Cadastramento", null, new { @class = "btn btn-primary" })
-<br />
-<br />
-<br />
-<br />
-<h1>Cadastrar Turma</h1>
-<br />
-@Html.ActionLink("Cadastrar", "Turma", "Cadastramento", null, new { @class = "btn btn-primary" })
-<br />
-<br />
+        <h1>Cadastrar Aluno</h1>
 
+        @Html.ActionLink("Cadastrar", "Index", "Aluno", null, new { @class = "btn btn-primary" })
+        <br />
+        <br />
+        <br />
+        <h1>Cadastrar Professor </h1>
+        <br />
+        @Html.ActionLink("Cadastrar", "Index", "Professor", null, new { @class = "btn btn-primary" })
+        <br />
+        <br />
+        <br />
+        <br />
+        <h1>Cadastrar Turma</h1>
+        <br />
+        @Html.ActionLink("Cadastrar", "Index", "Turma", null, new { @class = "btn btn-primary" })
+        <br />
+        <br />
+        <br />
+        <h1>Cadastrar Materia</h1>
+        <br />
+        @Html.ActionLink("Cadastrar", "Index", "Materia", null, new { @class = "btn btn-primary" })
+        <br />
+        <br />
+        <br />
+        <h1>Dados</h1>
 
+        @Html.ActionLink("Cadastrar", "Index", "PROFMATERIATURMA", null, new { @class = "btn btn-primary" })
+        <br />
+        <br />
+        <br />
+        <h1> inserir avalição</h1>
 
-<br />
-@Html.ActionLink("Voltar", "Index", "Home")
+        @Html.ActionLink("Inserir", "Index", "AVALIACAO", null, new { @class = "btn btn-primary" })
+
+    </div>
 </body>
 </html>

@@ -12,22 +12,13 @@ namespace Boletim
     using System;
     using System.Collections.Generic;
     
-    public partial class Aluno
+    public partial class ALUNO
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Aluno()
-        {
-            this.PROFESSORs = new HashSet<PROFESSOR>();
-        }
+        public int COD_ALUNO { get; set; }
+        public string EMAIL_ALUNO { get; set; }
+        public string NOME { get; set; }
+        public Nullable<int> UsuarioId { get; set; }
     
-        public int idAluno { get; set; }
-        public string Nome { get; set; }
-        public string Telefone { get; set; }
-        public Nullable<System.DateTime> dataNascimento { get; set; }
-        public Nullable<System.DateTime> dataCadastro { get; set; }
-        public Nullable<System.DateTime> dataUltAtualizacao { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PROFESSOR> PROFESSORs { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }

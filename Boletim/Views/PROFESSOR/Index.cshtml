@@ -3,85 +3,69 @@
 @{
     ViewBag.Title = "Index";
 }
+<style>
+    body {
+        background-color: #4A6398;
+        margin: 100px;
+    }
 
-<h2>Index</h2>
+    .um {
+        width: 100%;
+        color: #000;
+        border: 4px solid #000;
+        height: 1100px;
+        background-color: white;
+        border-radius: 25px;
+        box-sizing: border-box;
+    }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Endereco)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cep)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Telefone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Celular)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dataNascimento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dataCadastro)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.dataUltAtualizacao)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Aluno.Nome)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Turma.SÉRIE)
-        </th>
-        <th></th>
-    </tr>
+    h2 {
+        color: black
+    }
+</style>
+<div class="um">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Endereco)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cep)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Telefone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Celular)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dataNascimento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dataCadastro)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.dataUltAtualizacao)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Aluno.Nome)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Turma.SÉRIE)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idProfessor }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idProfessor }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idProfessor })
-        </td>
-    </tr>
-}
+    <h2>Professor</h2>
 
-</table>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EMAIL_PROFESSOR)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NOME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usuario.Email)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EMAIL_PROFESSOR)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NOME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Usuario.Email)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.COD_PROF }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.COD_PROF }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.COD_PROF })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<div>
+    @Html.ActionLink("Volta", "Cadastramentos", "Home", null, new { @class = "btn btn-primary" })
+</div>

@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using AlunoAplicaçao;
+
 using Boletim.Models;
 using Microsoft.Ajax.Utilities;
 
@@ -17,19 +17,27 @@ namespace Boletim.Controllers
 
             return View();
         }
-        public ActionResult Alunoe()
+      
+        public ActionResult PROFESSOR()
         {
             return View();
         }
-        public ActionResult Professor()
+        public ActionResult TURMA()
         {
             return View();
         }
-        public ActionResult Turma()
+        public ActionResult Materia()
         {
             return View();
         }
-
+        public ActionResult PROFMATERIATURMA()
+        {
+            return View();
+        }
+        public ActionResult AVALIACAO()
+        {
+            return View();
+        }
 
     }
       

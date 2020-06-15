@@ -51,15 +51,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SistemaBoletim.Aplicaçao\SistemaBoletim.Aplicaçao.csproj">
-      <Project>{2c6bab3c-6a75-4656-a83e-f535bba38892}</Project>
-      <Name>SistemaBoletim.Aplicaçao</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SistemaBoletim.Dominio\SistemaBoletim.Dominio.csproj">
-      <Project>{7da26596-5e49-46b6-825a-95c687cbf9b9}</Project>
-      <Name>SistemaBoletim.Dominio</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

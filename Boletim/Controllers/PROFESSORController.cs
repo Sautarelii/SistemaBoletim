@@ -12,13 +12,13 @@ namespace Boletim.Controllers
 {
     public class PROFESSORController : Controller
     {
-        private ControleAtualiEntities1 db = new ControleAtualiEntities1();
+        private BoletimOnlineEntities5 db = new BoletimOnlineEntities5();
 
         // GET: PROFESSOR
         public ActionResult Index()
         {
-            var pROFESSORs = db.PROFESSORs.Include(p => p.Aluno).Include(p => p.Turma);
-            return View(pROFESSORs.ToList());
+            var pROFESSOR = db.PROFESSOR.Include(p => p.Usuario);
+            return View(pROFESSOR.ToList());
         }
 
         // GET: PROFESSOR/Details/5
@@ -28,7 +28,7 @@ namespace Boletim.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PROFESSOR pROFESSOR = db.PROFESSORs.Find(id);
+            PROFESSOR pROFESSOR = db.PROFESSOR.Find(id);
             if (pROFESSOR == null)
             {
                 return HttpNotFound();
@@ -39,27 +39,25 @@ namespace Boletim.Controllers
         // GET: PROFESSOR/Create
         public ActionResult Create()
         {
-            ViewBag.IdAluno = new SelectList(db.Alunoes, "idAluno", "Nome");
-            ViewBag.IdTurma = new SelectList(db.Turmas, "idTURMA", "SÉRIE");
+            ViewBag.UsuarioId = new SelectList(db.Usuario, "UsuarioId", "Email");
             return View();
         }
 
         // POST: PROFESSOR/Create
-        // Para se proteger de mais ataques, habilite as propriedades específicas às quais você quer se associar. Para 
-        // obter mais detalhes, veja https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
+        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idProfessor,Nome,Endereco,Cep,Telefone,Celular,dataNascimento,dataCadastro,dataUltAtualizacao,IdTurma,IdAluno")] PROFESSOR pROFESSOR)
+        public ActionResult Create([Bind(Include = "COD_PROF,EMAIL_PROFESSOR,NOME,UsuarioId")] PROFESSOR pROFESSOR)
         {
             if (ModelState.IsValid)
             {
-                db.PROFESSORs.Add(pROFESSOR);
+                db.PROFESSOR.Add(pROFESSOR);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.IdAluno = new SelectList(db.Alunoes, "idAluno", "Nome", pROFESSOR.IdAluno);
-            ViewBag.IdTurma = new SelectList(db.Turmas, "idTURMA", "SÉRIE", pROFESSOR.IdTurma);
+            ViewBag.UsuarioId = new SelectList(db.Usuario, "UsuarioId", "Email", pROFESSOR.UsuarioId);
             return View(pROFESSOR);
         }
 
@@ -70,22 +68,21 @@ namespace Boletim.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PROFESSOR pROFESSOR = db.PROFESSORs.Find(id);
+            PROFESSOR pROFESSOR = db.PROFESSOR.Find(id);
             if (pROFESSOR == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.IdAluno = new SelectList(db.Alunoes, "idAluno", "Nome", pROFESSOR.IdAluno);
-            ViewBag.IdTurma = new SelectList(db.Turmas, "idTURMA", "SÉRIE", pROFESSOR.IdTurma);
+            ViewBag.UsuarioId = new SelectList(db.Usuario, "UsuarioId", "Email", pROFESSOR.UsuarioId);
             return View(pROFESSOR);
         }
 
         // POST: PROFESSOR/Edit/5
-        // Para se proteger de mais ataques, habilite as propriedades específicas às quais você quer se associar. Para 
-        // obter mais detalhes, veja https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
+        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idProfessor,Nome,Endereco,Cep,Telefone,Celular,dataNascimento,dataCadastro,dataUltAtualizacao,IdTurma,IdAluno")] PROFESSOR pROFESSOR)
+        public ActionResult Edit([Bind(Include = "COD_PROF,EMAIL_PROFESSOR,NOME,UsuarioId")] PROFESSOR pROFESSOR)
         {
             if (ModelState.IsValid)
             {
@@ -93,8 +90,7 @@ namespace Boletim.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.IdAluno = new SelectList(db.Alunoes, "idAluno", "Nome", pROFESSOR.IdAluno);
-            ViewBag.IdTurma = new SelectList(db.Turmas, "idTURMA", "SÉRIE", pROFESSOR.IdTurma);
+            ViewBag.UsuarioId = new SelectList(db.Usuario, "UsuarioId", "Email", pROFESSOR.UsuarioId);
             return View(pROFESSOR);
         }
 
@@ -105,7 +101,7 @@ namespace Boletim.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PROFESSOR pROFESSOR = db.PROFESSORs.Find(id);
+            PROFESSOR pROFESSOR = db.PROFESSOR.Find(id);
             if (pROFESSOR == null)
             {
                 return HttpNotFound();
@@ -118,8 +114,8 @@ namespace Boletim.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            PROFESSOR pROFESSOR = db.PROFESSORs.Find(id);
-            db.PROFESSORs.Remove(pROFESSOR);
+            PROFESSOR pROFESSOR = db.PROFESSOR.Find(id);
+            db.PROFESSOR.Remove(pROFESSOR);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

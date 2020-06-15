@@ -1,0 +1,34 @@
+﻿@model Boletim.Administrador
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalhe</h2>
+
+<div>
+    <h4>Administrador</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome_Administrador)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome_Administrador)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Usuario.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Usuario.Email)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Cod_Administrador }) |
+    @Html.ActionLink("Voltar", "Index")
+</p>

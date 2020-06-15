@@ -1,0 +1,392 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BoletimOnlineModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ALUNO">
+          <Key>
+            <PropertyRef Name="COD_ALUNO" />
+          </Key>
+          <Property Name="COD_ALUNO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EMAIL_ALUNO" Type="varchar" MaxLength="90" />
+          <Property Name="NOME" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="ATIVIDADE">
+          <Key>
+            <PropertyRef Name="COD_ATIVIDADE" />
+          </Key>
+          <Property Name="COD_ATIVIDADE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOME" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="DESCRICAO" Type="varchar" MaxLength="100" />
+          <Property Name="DATA_INI" Type="date" Nullable="false" />
+          <Property Name="DATA_FIM" Type="date" Nullable="false" />
+          <Property Name="COD_PROF" Type="int" Nullable="false" />
+          <Property Name="COD_MATERIA" Type="int" Nullable="false" />
+          <Property Name="COD_TURMA" Type="int" Nullable="false" />
+          <Property Name="PERIODO_LETIVO" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'BoletimOnline.dbo.ENTREGA_ATV' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="ENTREGA_ATV">
+          <Property Name="COD_ATIVIDADE" Type="int" />
+          <Property Name="COD_ALUNO" Type="int" />
+          <Property Name="NOTA" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="DATA_ENTREGA" Type="date" />
+          <Property Name="OBSERVACAO" Type="varchar" MaxLength="200" />
+        </EntityType>-->
+        <EntityType Name="MATERIA">
+          <Key>
+            <PropertyRef Name="COD_MATERIA" />
+          </Key>
+          <Property Name="COD_MATERIA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOME" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="PROFESSOR">
+          <Key>
+            <PropertyRef Name="COD_PROF" />
+          </Key>
+          <Property Name="COD_PROF" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EMAIL_PROFESSOR" Type="varchar" MaxLength="90" />
+          <Property Name="NOME" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="PROFMATERIATURMA">
+          <Key>
+            <PropertyRef Name="COD_PROF" />
+            <PropertyRef Name="COD_MATERIA" />
+            <PropertyRef Name="COD_TURMA" />
+            <PropertyRef Name="PERIODO_LETIVO" />
+          </Key>
+          <Property Name="COD_PROF" Type="int" Nullable="false" />
+          <Property Name="COD_MATERIA" Type="int" Nullable="false" />
+          <Property Name="COD_TURMA" Type="int" Nullable="false" />
+          <Property Name="PERIODO_LETIVO" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TURMA">
+          <Key>
+            <PropertyRef Name="COD_TURMA" />
+          </Key>
+          <Property Name="COD_TURMA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SERIE" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <!--Errors Found During Generation:
+error 6004: The table 'BoletimOnline.dbo.ENTREGA_ATV' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__ENTREGA_A__COD_A__1ED998B2" />-->
+        <!--Errors Found During Generation:
+error 6004: The table 'BoletimOnline.dbo.ENTREGA_ATV' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__ENTREGA_A__COD_A__1FCDBCEB" />-->
+        <Association Name="FK__PROFMATER__COD_M__1920BF5C">
+          <End Role="MATERIA" Type="Self.MATERIA" Multiplicity="1" />
+          <End Role="PROFMATERIATURMA" Type="Self.PROFMATERIATURMA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MATERIA">
+              <PropertyRef Name="COD_MATERIA" />
+            </Principal>
+            <Dependent Role="PROFMATERIATURMA">
+              <PropertyRef Name="COD_MATERIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PROFMATER__COD_P__182C9B23">
+          <End Role="PROFESSOR" Type="Self.PROFESSOR" Multiplicity="1" />
+          <End Role="PROFMATERIATURMA" Type="Self.PROFMATERIATURMA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROFESSOR">
+              <PropertyRef Name="COD_PROF" />
+            </Principal>
+            <Dependent Role="PROFMATERIATURMA">
+              <PropertyRef Name="COD_PROF" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PROFMATER__COD_T__1A14E395">
+          <End Role="TURMA" Type="Self.TURMA" Multiplicity="1" />
+          <End Role="PROFMATERIATURMA" Type="Self.PROFMATERIATURMA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TURMA">
+              <PropertyRef Name="COD_TURMA" />
+            </Principal>
+            <Dependent Role="PROFMATERIATURMA">
+              <PropertyRef Name="COD_TURMA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROFTURMA_ATV">
+          <End Role="PROFMATERIATURMA" Type="Self.PROFMATERIATURMA" Multiplicity="1" />
+          <End Role="ATIVIDADE" Type="Self.ATIVIDADE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROFMATERIATURMA">
+              <PropertyRef Name="COD_PROF" />
+              <PropertyRef Name="COD_MATERIA" />
+              <PropertyRef Name="COD_TURMA" />
+              <PropertyRef Name="PERIODO_LETIVO" />
+            </Principal>
+            <Dependent Role="ATIVIDADE">
+              <PropertyRef Name="COD_PROF" />
+              <PropertyRef Name="COD_MATERIA" />
+              <PropertyRef Name="COD_TURMA" />
+              <PropertyRef Name="PERIODO_LETIVO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BoletimOnlineModelStoreContainer">
+          <EntitySet Name="ALUNO" EntityType="Self.ALUNO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ATIVIDADE" EntityType="Self.ATIVIDADE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MATERIA" EntityType="Self.MATERIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROFESSOR" EntityType="Self.PROFESSOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PROFMATERIATURMA" EntityType="Self.PROFMATERIATURMA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TURMA" EntityType="Self.TURMA" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__PROFMATER__COD_M__1920BF5C" Association="Self.FK__PROFMATER__COD_M__1920BF5C">
+            <End Role="MATERIA" EntitySet="MATERIA" />
+            <End Role="PROFMATERIATURMA" EntitySet="PROFMATERIATURMA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PROFMATER__COD_P__182C9B23" Association="Self.FK__PROFMATER__COD_P__182C9B23">
+            <End Role="PROFESSOR" EntitySet="PROFESSOR" />
+            <End Role="PROFMATERIATURMA" EntitySet="PROFMATERIATURMA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PROFMATER__COD_T__1A14E395" Association="Self.FK__PROFMATER__COD_T__1A14E395">
+            <End Role="TURMA" EntitySet="TURMA" />
+            <End Role="PROFMATERIATURMA" EntitySet="PROFMATERIATURMA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROFTURMA_ATV" Association="Self.FK_PROFTURMA_ATV">
+            <End Role="PROFMATERIATURMA" EntitySet="PROFMATERIATURMA" />
+            <End Role="ATIVIDADE" EntitySet="ATIVIDADE" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BoletimOnlineModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ALUNO">
+          <Key>
+            <PropertyRef Name="COD_ALUNO" />
+          </Key>
+          <Property Name="COD_ALUNO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EMAIL_ALUNO" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
+          <Property Name="NOME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ATIVIDADE">
+          <Key>
+            <PropertyRef Name="COD_ATIVIDADE" />
+          </Key>
+          <Property Name="COD_ATIVIDADE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOME" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DESCRICAO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DATA_INI" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DATA_FIM" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="COD_PROF" Type="Int32" Nullable="false" />
+          <Property Name="COD_MATERIA" Type="Int32" Nullable="false" />
+          <Property Name="COD_TURMA" Type="Int32" Nullable="false" />
+          <Property Name="PERIODO_LETIVO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PROFMATERIATURMA" Relationship="Self.FK_PROFTURMA_ATV" FromRole="ATIVIDADE" ToRole="PROFMATERIATURMA" />
+        </EntityType>
+        <EntityType Name="MATERIA">
+          <Key>
+            <PropertyRef Name="COD_MATERIA" />
+          </Key>
+          <Property Name="COD_MATERIA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PROFMATERIATURMA" Relationship="Self.FK__PROFMATER__COD_M__1920BF5C" FromRole="MATERIA" ToRole="PROFMATERIATURMA" />
+        </EntityType>
+        <EntityType Name="PROFESSOR">
+          <Key>
+            <PropertyRef Name="COD_PROF" />
+          </Key>
+          <Property Name="COD_PROF" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EMAIL_PROFESSOR" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
+          <Property Name="NOME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PROFMATERIATURMA" Relationship="Self.FK__PROFMATER__COD_P__182C9B23" FromRole="PROFESSOR" ToRole="PROFMATERIATURMA" />
+        </EntityType>
+        <EntityType Name="PROFMATERIATURMA">
+          <Key>
+            <PropertyRef Name="COD_PROF" />
+            <PropertyRef Name="COD_MATERIA" />
+            <PropertyRef Name="COD_TURMA" />
+            <PropertyRef Name="PERIODO_LETIVO" />
+          </Key>
+          <Property Name="COD_PROF" Type="Int32" Nullable="false" />
+          <Property Name="COD_MATERIA" Type="Int32" Nullable="false" />
+          <Property Name="COD_TURMA" Type="Int32" Nullable="false" />
+          <Property Name="PERIODO_LETIVO" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ATIVIDADE" Relationship="Self.FK_PROFTURMA_ATV" FromRole="PROFMATERIATURMA" ToRole="ATIVIDADE" />
+          <NavigationProperty Name="MATERIA" Relationship="Self.FK__PROFMATER__COD_M__1920BF5C" FromRole="PROFMATERIATURMA" ToRole="MATERIA" />
+          <NavigationProperty Name="PROFESSOR" Relationship="Self.FK__PROFMATER__COD_P__182C9B23" FromRole="PROFMATERIATURMA" ToRole="PROFESSOR" />
+          <NavigationProperty Name="TURMA" Relationship="Self.FK__PROFMATER__COD_T__1A14E395" FromRole="PROFMATERIATURMA" ToRole="TURMA" />
+        </EntityType>
+        <EntityType Name="TURMA">
+          <Key>
+            <PropertyRef Name="COD_TURMA" />
+          </Key>
+          <Property Name="COD_TURMA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SERIE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="PROFMATERIATURMA" Relationship="Self.FK__PROFMATER__COD_T__1A14E395" FromRole="TURMA" ToRole="PROFMATERIATURMA" />
+        </EntityType>
+        <Association Name="FK_PROFTURMA_ATV">
+          <End Role="PROFMATERIATURMA" Type="Self.PROFMATERIATURMA" Multiplicity="1" />
+          <End Role="ATIVIDADE" Type="Self.ATIVIDADE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROFMATERIATURMA">
+              <PropertyRef Name="COD_PROF" />
+              <PropertyRef Name="COD_MATERIA" />
+              <PropertyRef Name="COD_TURMA" />
+              <PropertyRef Name="PERIODO_LETIVO" />
+            </Principal>
+            <Dependent Role="ATIVIDADE">
+              <PropertyRef Name="COD_PROF" />
+              <PropertyRef Name="COD_MATERIA" />
+              <PropertyRef Name="COD_TURMA" />
+              <PropertyRef Name="PERIODO_LETIVO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PROFMATER__COD_M__1920BF5C">
+          <End Role="MATERIA" Type="Self.MATERIA" Multiplicity="1" />
+          <End Role="PROFMATERIATURMA" Type="Self.PROFMATERIATURMA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MATERIA">
+              <PropertyRef Name="COD_MATERIA" />
+            </Principal>
+            <Dependent Role="PROFMATERIATURMA">
+              <PropertyRef Name="COD_MATERIA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PROFMATER__COD_P__182C9B23">
+          <End Role="PROFESSOR" Type="Self.PROFESSOR" Multiplicity="1" />
+          <End Role="PROFMATERIATURMA" Type="Self.PROFMATERIATURMA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PROFESSOR">
+              <PropertyRef Name="COD_PROF" />
+            </Principal>
+            <Dependent Role="PROFMATERIATURMA">
+              <PropertyRef Name="COD_PROF" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PROFMATER__COD_T__1A14E395">
+          <End Role="TURMA" Type="Self.TURMA" Multiplicity="1" />
+          <End Role="PROFMATERIATURMA" Type="Self.PROFMATERIATURMA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TURMA">
+              <PropertyRef Name="COD_TURMA" />
+            </Principal>
+            <Dependent Role="PROFMATERIATURMA">
+              <PropertyRef Name="COD_TURMA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BoletimOnlineEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ALUNO" EntityType="Self.ALUNO" />
+          <EntitySet Name="ATIVIDADE" EntityType="Self.ATIVIDADE" />
+          <EntitySet Name="MATERIA" EntityType="Self.MATERIA" />
+          <EntitySet Name="PROFESSOR" EntityType="Self.PROFESSOR" />
+          <EntitySet Name="PROFMATERIATURMA" EntityType="Self.PROFMATERIATURMA" />
+          <EntitySet Name="TURMA" EntityType="Self.TURMA" />
+          <AssociationSet Name="FK_PROFTURMA_ATV" Association="Self.FK_PROFTURMA_ATV">
+            <End Role="PROFMATERIATURMA" EntitySet="PROFMATERIATURMA" />
+            <End Role="ATIVIDADE" EntitySet="ATIVIDADE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PROFMATER__COD_M__1920BF5C" Association="Self.FK__PROFMATER__COD_M__1920BF5C">
+            <End Role="MATERIA" EntitySet="MATERIA" />
+            <End Role="PROFMATERIATURMA" EntitySet="PROFMATERIATURMA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PROFMATER__COD_P__182C9B23" Association="Self.FK__PROFMATER__COD_P__182C9B23">
+            <End Role="PROFESSOR" EntitySet="PROFESSOR" />
+            <End Role="PROFMATERIATURMA" EntitySet="PROFMATERIATURMA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PROFMATER__COD_T__1A14E395" Association="Self.FK__PROFMATER__COD_T__1A14E395">
+            <End Role="TURMA" EntitySet="TURMA" />
+            <End Role="PROFMATERIATURMA" EntitySet="PROFMATERIATURMA" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BoletimOnlineModelStoreContainer" CdmEntityContainer="BoletimOnlineEntities2">
+          <EntitySetMapping Name="ALUNO">
+            <EntityTypeMapping TypeName="BoletimOnlineModel.ALUNO">
+              <MappingFragment StoreEntitySet="ALUNO">
+                <ScalarProperty Name="COD_ALUNO" ColumnName="COD_ALUNO" />
+                <ScalarProperty Name="EMAIL_ALUNO" ColumnName="EMAIL_ALUNO" />
+                <ScalarProperty Name="NOME" ColumnName="NOME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ATIVIDADE">
+            <EntityTypeMapping TypeName="BoletimOnlineModel.ATIVIDADE">
+              <MappingFragment StoreEntitySet="ATIVIDADE">
+                <ScalarProperty Name="COD_ATIVIDADE" ColumnName="COD_ATIVIDADE" />
+                <ScalarProperty Name="NOME" ColumnName="NOME" />
+                <ScalarProperty Name="DESCRICAO" ColumnName="DESCRICAO" />
+                <ScalarProperty Name="DATA_INI" ColumnName="DATA_INI" />
+                <ScalarProperty Name="DATA_FIM" ColumnName="DATA_FIM" />
+                <ScalarProperty Name="COD_PROF" ColumnName="COD_PROF" />
+                <ScalarProperty Name="COD_MATERIA" ColumnName="COD_MATERIA" />
+                <ScalarProperty Name="COD_TURMA" ColumnName="COD_TURMA" />
+                <ScalarProperty Name="PERIODO_LETIVO" ColumnName="PERIODO_LETIVO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MATERIA">
+            <EntityTypeMapping TypeName="BoletimOnlineModel.MATERIA">
+              <MappingFragment StoreEntitySet="MATERIA">
+                <ScalarProperty Name="COD_MATERIA" ColumnName="COD_MATERIA" />
+                <ScalarProperty Name="NOME" ColumnName="NOME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROFESSOR">
+            <EntityTypeMapping TypeName="BoletimOnlineModel.PROFESSOR">
+              <MappingFragment StoreEntitySet="PROFESSOR">
+                <ScalarProperty Name="COD_PROF" ColumnName="COD_PROF" />
+                <ScalarProperty Name="EMAIL_PROFESSOR" ColumnName="EMAIL_PROFESSOR" />
+                <ScalarProperty Name="NOME" ColumnName="NOME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PROFMATERIATURMA">
+            <EntityTypeMapping TypeName="BoletimOnlineModel.PROFMATERIATURMA">
+              <MappingFragment StoreEntitySet="PROFMATERIATURMA">
+                <ScalarProperty Name="COD_PROF" ColumnName="COD_PROF" />
+                <ScalarProperty Name="COD_MATERIA" ColumnName="COD_MATERIA" />
+                <ScalarProperty Name="COD_TURMA" ColumnName="COD_TURMA" />
+                <ScalarProperty Name="PERIODO_LETIVO" ColumnName="PERIODO_LETIVO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TURMA">
+            <EntityTypeMapping TypeName="BoletimOnlineModel.TURMA">
+              <MappingFragment StoreEntitySet="TURMA">
+                <ScalarProperty Name="COD_TURMA" ColumnName="COD_TURMA" />
+                <ScalarProperty Name="SERIE" ColumnName="SERIE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

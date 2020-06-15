@@ -1,0 +1,42 @@
+﻿@model Boletim.PROFMATERIATURMA
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalhe</h2>
+
+<div>
+    <h4>PROFMATERIATURMA</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MATERIA.NOME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MATERIA.NOME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROFESSOR.EMAIL_PROFESSOR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROFESSOR.EMAIL_PROFESSOR)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TURMA.SERIE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TURMA.SERIE)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Voltar", "Index")
+</p>

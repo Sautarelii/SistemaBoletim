@@ -1,0 +1,58 @@
+﻿@model Boletim.AVALIACAO
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Detalhe</h2>
+
+<div>
+    <h4>AVALIACAO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NOME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NOME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DESCRICAO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DESCRICAO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DATA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DATA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PESO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PESO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROFMATERIATURMA.COD_PROF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROFMATERIATURMA.COD_PROF)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.COD_AVALIACAO }) |
+    @Html.ActionLink("Voltar", "Index")
+</p>

@@ -16,7 +16,8 @@ namespace Boletim
     {
         public int Cod_Administrador { get; set; }
         public string Nome_Administrador { get; set; }
-        public string Email { get; set; }
-        public string Senha { get; set; }
+        public Nullable<int> UsuarioId { get; set; }
+    
+        public virtual Usuario Usuario { get; set; }
     }
 }

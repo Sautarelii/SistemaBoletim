@@ -10,107 +10,107 @@ using Boletim;
 
 namespace Boletim.Controllers
 {
-    public class TurmaController : Controller
+    public class TURMAController : Controller
     {
-        private ControleAtualiEntities1 db = new ControleAtualiEntities1();
+        private BoletimOnlineEntities5 db = new BoletimOnlineEntities5();
 
-        // GET: Turma
+        // GET: TURMA
         public ActionResult Index()
         {
-            return View(db.Turmas.ToList());
+            return View(db.TURMA.ToList());
         }
 
-        // GET: Turma/Details/5
+        // GET: TURMA/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Turma turma = db.Turmas.Find(id);
-            if (turma == null)
+            TURMA tURMA = db.TURMA.Find(id);
+            if (tURMA == null)
             {
                 return HttpNotFound();
             }
-            return View(turma);
+            return View(tURMA);
         }
 
-        // GET: Turma/Create
+        // GET: TURMA/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Turma/Create
-        // Para se proteger de mais ataques, habilite as propriedades específicas às quais você quer se associar. Para 
-        // obter mais detalhes, veja https://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: TURMA/Create
+        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
+        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "idTURMA,SÉRIE")] Turma turma)
+        public ActionResult Create([Bind(Include = "COD_TURMA,SERIE,PERIODO_LET")] TURMA tURMA)
         {
             if (ModelState.IsValid)
             {
-                db.Turmas.Add(turma);
+                db.TURMA.Add(tURMA);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(turma);
+            return View(tURMA);
         }
 
-        // GET: Turma/Edit/5
+        // GET: TURMA/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Turma turma = db.Turmas.Find(id);
-            if (turma == null)
+            TURMA tURMA = db.TURMA.Find(id);
+            if (tURMA == null)
             {
                 return HttpNotFound();
             }
-            return View(turma);
+            return View(tURMA);
         }
 
-        // POST: Turma/Edit/5
-        // Para se proteger de mais ataques, habilite as propriedades específicas às quais você quer se associar. Para 
-        // obter mais detalhes, veja https://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: TURMA/Edit/5
+        // Para se proteger de mais ataques, ative as propriedades específicas a que você quer se conectar. Para 
+        // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "idTURMA,SÉRIE")] Turma turma)
+        public ActionResult Edit([Bind(Include = "COD_TURMA,SERIE,PERIODO_LET")] TURMA tURMA)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(turma).State = EntityState.Modified;
+                db.Entry(tURMA).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(turma);
+            return View(tURMA);
         }
 
-        // GET: Turma/Delete/5
+        // GET: TURMA/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Turma turma = db.Turmas.Find(id);
-            if (turma == null)
+            TURMA tURMA = db.TURMA.Find(id);
+            if (tURMA == null)
             {
                 return HttpNotFound();
             }
-            return View(turma);
+            return View(tURMA);
         }
 
-        // POST: Turma/Delete/5
+        // POST: TURMA/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Turma turma = db.Turmas.Find(id);
-            db.Turmas.Remove(turma);
+            TURMA tURMA = db.TURMA.Find(id);
+            db.TURMA.Remove(tURMA);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

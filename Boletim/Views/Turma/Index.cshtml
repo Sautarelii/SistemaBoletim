@@ -1,33 +1,64 @@
-﻿@model IEnumerable<Boletim.Turma>
+﻿@model IEnumerable<Boletim.TURMA>
 
 @{
     ViewBag.Title = "Index";
 }
+<style>
+    body {
+        background-color: #4A6398;
+        margin: 100px;
+    }
 
-<h2>Index</h2>
+    .um {
+        width: 100%;
+        color: #000;
+        border: 4px solid #000;
+        height: 1100px;
+        background-color: white;
+        border-radius: 25px;
+        box-sizing: border-box;
+    }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.SÉRIE)
-        </th>
-        <th></th>
-    </tr>
+    h2 {
+        color: black
+    }
+</style>
+<div class="um">
+    <h2>Turma</h2>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.SÉRIE)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idTURMA }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idTURMA }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idTURMA })
-        </td>
-    </tr>
-}
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SERIE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PERIODO_LET)
+            </th>
+            <th></th>
+        </tr>
 
-</table>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SERIE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PERIODO_LET)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.COD_TURMA }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.COD_TURMA }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.COD_TURMA })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<div>
+    @Html.ActionLink("Volta", "Cadastramentos", "Home", null, new { @class = "btn btn-primary" })
+</div>

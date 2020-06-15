@@ -17,24 +17,19 @@ namespace Boletim
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PROFESSOR()
         {
-            this.MATERIAs = new HashSet<MATERIA>();
+            this.NOTA = new HashSet<NOTA>();
+            this.PROFMATERIATURMA = new HashSet<PROFMATERIATURMA>();
         }
     
-        public int idProfessor { get; set; }
-        public string Nome { get; set; }
-        public string Endereco { get; set; }
-        public string Cep { get; set; }
-        public string Telefone { get; set; }
-        public string Celular { get; set; }
-        public Nullable<System.DateTime> dataNascimento { get; set; }
-        public Nullable<System.DateTime> dataCadastro { get; set; }
-        public Nullable<System.DateTime> dataUltAtualizacao { get; set; }
-        public Nullable<int> IdTurma { get; set; }
-        public Nullable<int> IdAluno { get; set; }
+        public int COD_PROF { get; set; }
+        public string EMAIL_PROFESSOR { get; set; }
+        public string NOME { get; set; }
+        public Nullable<int> UsuarioId { get; set; }
     
-        public virtual Aluno Aluno { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<MATERIA> MATERIAs { get; set; }
-        public virtual Turma Turma { get; set; }
+        public virtual ICollection<NOTA> NOTA { get; set; }
+        public virtual Usuario Usuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PROFMATERIATURMA> PROFMATERIATURMA { get; set; }
     }
 }

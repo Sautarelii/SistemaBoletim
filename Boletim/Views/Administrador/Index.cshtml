@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Boletim.Administrador>
+
+@{
+    ViewBag.Title = "Index";
+}
+    <style>
+        body {
+            background-color: #4A6398;
+            margin: 100px;
+        }
+
+        .um {
+            width: 100%;
+            color: #000;
+            border: 4px solid #000;
+            height: 1100px;
+            background-color: white;
+            border-radius: 25px;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            color: black
+        }
+    </style>
+    <div class="um">
+        <h2>Administrador</h2>
+
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome_Administrador)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Usuario.Email)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome_Administrador)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Usuario.Email)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Cod_Administrador }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Cod_Administrador }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Cod_Administrador })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>

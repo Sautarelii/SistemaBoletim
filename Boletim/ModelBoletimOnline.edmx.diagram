@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="64a6cded94174fac9e0c9a4f054f89c6" Name="Diagram1">
+        <EntityTypeShape EntityType="BoletimOnlineModel.Administrador" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoletimOnlineModel.ALUNO" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoletimOnlineModel.ALUNO_NOTA" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoletimOnlineModel.AVALIACAO" Width="1.5" PointX="10.5" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoletimOnlineModel.MATERIA" Width="1.5" PointX="3" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoletimOnlineModel.NOTA" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoletimOnlineModel.PROFESSOR" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoletimOnlineModel.PROFMATERIATURMA" Width="1.5" PointX="8.25" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoletimOnlineModel.TURMA" Width="1.5" PointX="3" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoletimOnlineModel.TURMA_ALUNO" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoletimOnlineModel.Usuario" Width="1.5" PointX="0.75" PointY="6.125" IsExpanded="true" />
+        <AssociationConnector Association="BoletimOnlineModel.FK__Administr__Usuar__145C0A3F" ManuallyRouted="false" />
+        <AssociationConnector Association="BoletimOnlineModel.FK__ALUNO__UsuarioId__1ED998B2" ManuallyRouted="false" />
+        <AssociationConnector Association="BoletimOnlineModel.FK_PROFTURMA_ATV" ManuallyRouted="false" />
+        <AssociationConnector Association="BoletimOnlineModel.FK__NOTA__COD_MATERI__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="BoletimOnlineModel.FK__PROFMATER__COD_M__24927208" ManuallyRouted="false" />
+        <AssociationConnector Association="BoletimOnlineModel.FK__NOTA__COD_PROF__2B3F6F97" ManuallyRouted="false" />
+        <AssociationConnector Association="BoletimOnlineModel.FK__NOTA__COD_TURMA__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="BoletimOnlineModel.FK__PROFESSOR__Usuar__182C9B23" ManuallyRouted="false" />
+        <AssociationConnector Association="BoletimOnlineModel.FK__PROFMATER__COD_P__239E4DCF" ManuallyRouted="false" />
+        <AssociationConnector Association="BoletimOnlineModel.FK__PROFMATER__COD_T__25869641" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

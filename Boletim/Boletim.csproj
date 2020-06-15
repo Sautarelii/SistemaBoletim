@@ -52,6 +52,21 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -126,68 +141,78 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Administrador.cs">
-      <DependentUpon>BoletimModel.tt</DependentUpon>
+      <DependentUpon>ModelBoletimOnline.tt</DependentUpon>
     </Compile>
-    <Compile Include="Aluno.cs">
-      <DependentUpon>BoletimModel.tt</DependentUpon>
+    <Compile Include="ALUNO.cs">
+      <DependentUpon>ModelBoletimOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ALUNO_NOTA.cs">
+      <DependentUpon>ModelBoletimOnline.tt</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="BoletimModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BoletimModel.Context.tt</DependentUpon>
+    <Compile Include="AVALIACAO.cs">
+      <DependentUpon>ModelBoletimOnline.tt</DependentUpon>
     </Compile>
-    <Compile Include="BoletimModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BoletimModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BoletimModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>BoletimModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Contexto.cs" />
     <Compile Include="Controllers\AdministradorController.cs" />
-    <Compile Include="Controllers\AdministradorsController.cs" />
-    <Compile Include="Controllers\AlunoeController.cs" />
+    <Compile Include="Controllers\ALUNOController.cs" />
+    <Compile Include="Controllers\AVALIACAOController.cs" />
     <Compile Include="Controllers\CadastroEntities.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MATERIAController.cs" />
     <Compile Include="Controllers\PROFESSORController.cs" />
-    <Compile Include="Controllers\TurmaController.cs" />
+    <Compile Include="Controllers\PROFMATERIATURMAController.cs" />
+    <Compile Include="Controllers\TURMAController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="MATERIA.cs">
-      <DependentUpon>BoletimModel.tt</DependentUpon>
+      <DependentUpon>ModelBoletimOnline.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Administrador.cs" />
-    <Compile Include="Models\Turma.cs" />
+    <Compile Include="ModelBoletimOnline.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelBoletimOnline.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelBoletimOnline.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelBoletimOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelBoletimOnline.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelBoletimOnline.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="NOTA.cs">
+      <DependentUpon>ModelBoletimOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OwinStartup.cs" />
     <Compile Include="PROFESSOR.cs">
-      <DependentUpon>BoletimModel.tt</DependentUpon>
+      <DependentUpon>ModelBoletimOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PROFMATERIATURMA.cs">
+      <DependentUpon>ModelBoletimOnline.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Turma.cs">
-      <DependentUpon>BoletimModel.tt</DependentUpon>
+    <Compile Include="Repositories\UsuarioRepository.cs" />
+    <Compile Include="TURMA.cs">
+      <DependentUpon>ModelBoletimOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TURMA_ALUNO.cs">
+      <DependentUpon>ModelBoletimOnline.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Usuario.cs">
+      <DependentUpon>ModelBoletimOnline.tt</DependentUpon>
     </Compile>
     <Compile Include="Views\HomeCadastramento\Cadastramentos.cs" />
     <Compile Include="Views\Home\CadastramentoController.cs" />
-    <Compile Include="Views\Home\Cadastramentos.cs" />
+    <Compile Include="Views\Home\CadastramentosX.cs" />
     <Compile Include="Views\Shared\Administrador.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="BoletimModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BoletimModel.edmx</DependentUpon>
-      <LastGenOutput>BoletimModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="BoletimModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>BoletimModel.edmx</DependentUpon>
-      <LastGenOutput>BoletimModel.cs</LastGenOutput>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -196,18 +221,29 @@
     <Content Include="Content\img\estudos2.png" />
     <Content Include="Content\img\estudos3.png" />
     <Content Include="Content\img\Logo.png" />
+    <Content Include="Content\img\logoo.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="ModelBoletimOnline.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelBoletimOnline.edmx</DependentUpon>
+      <LastGenOutput>ModelBoletimOnline.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelBoletimOnline.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelBoletimOnline.edmx</DependentUpon>
+      <LastGenOutput>ModelBoletimOnline.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="BoletimModel.edmx">
+    <EntityDeploy Include="ModelBoletimOnline.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>BoletimModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>ModelBoletimOnline.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="BoletimModel.edmx.diagram">
-      <DependentUpon>BoletimModel.edmx</DependentUpon>
+    <Content Include="ModelBoletimOnline.edmx.diagram">
+      <DependentUpon>ModelBoletimOnline.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -220,7 +256,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Views\Home\Cadastramentos.html" />
+    <Content Include="Views\Home\CadastramentosX.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -240,26 +276,42 @@
     <Content Include="Views\Cadastramento\CadastroAluno.cshtml" />
     <Content Include="Views\Cadastramento\CadastroProfessor.cshtml" />
     <Content Include="Views\Cadastramento\CadastroTurma.cshtml" />
-    <Content Include="Views\Administradors\Create.cshtml" />
-    <Content Include="Views\Administradors\Delete.cshtml" />
-    <Content Include="Views\Administradors\Details.cshtml" />
-    <Content Include="Views\Administradors\Edit.cshtml" />
-    <Content Include="Views\Administradors\Index.cshtml" />
-    <Content Include="Views\Alunoe\Create.cshtml" />
-    <Content Include="Views\Alunoe\Delete.cshtml" />
-    <Content Include="Views\Alunoe\Details.cshtml" />
-    <Content Include="Views\Alunoe\Edit.cshtml" />
-    <Content Include="Views\Alunoe\Index.cshtml" />
+    <Content Include="Views\Administrador\Create.cshtml" />
+    <Content Include="Views\Administrador\Delete.cshtml" />
+    <Content Include="Views\Administrador\Details.cshtml" />
+    <Content Include="Views\Administrador\Edit.cshtml" />
+    <Content Include="Views\Administrador\Index.cshtml" />
+    <Content Include="Views\Administrador\Login.cshtml" />
+    <Content Include="Views\ALUNO\Create.cshtml" />
+    <Content Include="Views\ALUNO\Delete.cshtml" />
+    <Content Include="Views\ALUNO\Details.cshtml" />
+    <Content Include="Views\ALUNO\Edit.cshtml" />
+    <Content Include="Views\ALUNO\Index.cshtml" />
     <Content Include="Views\PROFESSOR\Create.cshtml" />
     <Content Include="Views\PROFESSOR\Delete.cshtml" />
     <Content Include="Views\PROFESSOR\Details.cshtml" />
     <Content Include="Views\PROFESSOR\Edit.cshtml" />
     <Content Include="Views\PROFESSOR\Index.cshtml" />
-    <Content Include="Views\Turma\Create.cshtml" />
-    <Content Include="Views\Turma\Delete.cshtml" />
-    <Content Include="Views\Turma\Details.cshtml" />
-    <Content Include="Views\Turma\Edit.cshtml" />
-    <Content Include="Views\Turma\Index.cshtml" />
+    <Content Include="Views\MATERIA\Create.cshtml" />
+    <Content Include="Views\MATERIA\Delete.cshtml" />
+    <Content Include="Views\MATERIA\Details.cshtml" />
+    <Content Include="Views\MATERIA\Edit.cshtml" />
+    <Content Include="Views\MATERIA\Index.cshtml" />
+    <Content Include="Views\TURMA\Create.cshtml" />
+    <Content Include="Views\TURMA\Delete.cshtml" />
+    <Content Include="Views\TURMA\Details.cshtml" />
+    <Content Include="Views\TURMA\Edit.cshtml" />
+    <Content Include="Views\TURMA\Index.cshtml" />
+    <Content Include="Views\AVALIACAO\Create.cshtml" />
+    <Content Include="Views\AVALIACAO\Delete.cshtml" />
+    <Content Include="Views\AVALIACAO\Details.cshtml" />
+    <Content Include="Views\AVALIACAO\Edit.cshtml" />
+    <Content Include="Views\AVALIACAO\Index.cshtml" />
+    <Content Include="Views\PROFMATERIATURMA\Create.cshtml" />
+    <Content Include="Views\PROFMATERIATURMA\Delete.cshtml" />
+    <Content Include="Views\PROFMATERIATURMA\Details.cshtml" />
+    <Content Include="Views\PROFMATERIATURMA\Edit.cshtml" />
+    <Content Include="Views\PROFMATERIATURMA\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -279,16 +331,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SistemaBoletim.Aplicaçao\SistemaBoletim.Aplicaçao.csproj">
-      <Project>{2c6bab3c-6a75-4656-a83e-f535bba38892}</Project>
-      <Name>SistemaBoletim.Aplicaçao</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SistemaBoletim.Dominio\SistemaBoletim.Dominio.csproj">
-      <Project>{7da26596-5e49-46b6-825a-95c687cbf9b9}</Project>
-      <Name>SistemaBoletim.Dominio</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

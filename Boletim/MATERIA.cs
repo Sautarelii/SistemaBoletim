@@ -14,10 +14,19 @@ namespace Boletim
     
     public partial class MATERIA
     {
-        public int IdMateria { get; set; }
-        public string Nome_Materia { get; set; }
-        public Nullable<int> IdProfessor { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public MATERIA()
+        {
+            this.NOTA = new HashSet<NOTA>();
+            this.PROFMATERIATURMA = new HashSet<PROFMATERIATURMA>();
+        }
     
-        public virtual PROFESSOR PROFESSOR { get; set; }
+        public int COD_MATERIA { get; set; }
+        public string NOME { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<NOTA> NOTA { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PROFMATERIATURMA> PROFMATERIATURMA { get; set; }
     }
 }

@@ -12,18 +12,22 @@ namespace Boletim
     using System;
     using System.Collections.Generic;
     
-    public partial class Turma
+    public partial class TURMA
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Turma()
+        public TURMA()
         {
-            this.PROFESSORs = new HashSet<PROFESSOR>();
+            this.NOTA = new HashSet<NOTA>();
+            this.PROFMATERIATURMA = new HashSet<PROFMATERIATURMA>();
         }
     
-        public int idTURMA { get; set; }
-        public string SÉRIE { get; set; }
+        public int COD_TURMA { get; set; }
+        public string SERIE { get; set; }
+        public string PERIODO_LET { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PROFESSOR> PROFESSORs { get; set; }
+        public virtual ICollection<NOTA> NOTA { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PROFMATERIATURMA> PROFMATERIATURMA { get; set; }
     }
 }

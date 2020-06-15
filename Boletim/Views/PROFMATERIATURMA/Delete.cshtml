@@ -1,0 +1,48 @@
+﻿@model Boletim.PROFMATERIATURMA
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Tem certeza de que deseja excluir isso?</h3>
+<div>
+    <h4>PROFMATERIATURMA</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MATERIA.NOME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MATERIA.NOME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROFESSOR.EMAIL_PROFESSOR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROFESSOR.EMAIL_PROFESSOR)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TURMA.SERIE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TURMA.SERIE)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "Index")
+        </div>
+    }
+</div>

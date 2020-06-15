@@ -1,0 +1,70 @@
+﻿@model IEnumerable<Boletim.PROFMATERIATURMA>
+
+@{
+    ViewBag.Title = "Index";
+}
+    <style>
+        body {
+            background-color: #4A6398;
+            margin: 100px;
+        }
+
+        .um {
+            width: 100%;
+            color: #000;
+            border: 4px solid #000;
+            height: 1100px;
+            background-color: white;
+            border-radius: 25px;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            color: black
+        }
+    </style>
+<div class="um">
+<h2>Atribuiçao</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MATERIA.NOME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROFESSOR.EMAIL_PROFESSOR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TURMA.SERIE)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MATERIA.NOME)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PROFESSOR.EMAIL_PROFESSOR)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TURMA.SERIE)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+    </table>
+</div>
+    <div>
+        @Html.ActionLink("Volta", "Cadastramentos", "Home", null, new { @class = "btn btn-primary" })
+    </div>
