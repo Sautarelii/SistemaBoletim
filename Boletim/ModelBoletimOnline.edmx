@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BoletimOnlineModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="BoletimOnline2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Administrador">
           <Key>
             <PropertyRef Name="Cod_Administrador" />
@@ -54,16 +54,12 @@
         <EntityType Name="NOTA">
           <Key>
             <PropertyRef Name="COD_NOTA" />
-            <PropertyRef Name="COD_ALUNO" />
-            <PropertyRef Name="COD_PROF" />
-            <PropertyRef Name="COD_MATERIA" />
-            <PropertyRef Name="COD_TURMA" />
           </Key>
           <Property Name="COD_NOTA" Type="int" Nullable="false" />
-          <Property Name="COD_ALUNO" Type="int" Nullable="false" />
-          <Property Name="COD_PROF" Type="int" Nullable="false" />
-          <Property Name="COD_MATERIA" Type="int" Nullable="false" />
-          <Property Name="COD_TURMA" Type="int" Nullable="false" />
+          <Property Name="COD_ALUNO" Type="int" />
+          <Property Name="COD_PROF" Type="int" />
+          <Property Name="COD_MATERIA" Type="int" />
+          <Property Name="COD_TURMA" Type="int" />
           <Property Name="VALOR" Type="decimal" Precision="5" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="PROFESSOR">
@@ -110,6 +106,7 @@
           <Property Name="UsuarioId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="50" />
           <Property Name="HashSenha" Type="varchar" MaxLength="256" />
+          <Property Name="FlagSenhaTemp" Type="char" MaxLength="1" Nullable="false" />
         </EntityType>
         <Association Name="FK__Administr__Usuar__145C0A3F">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
@@ -123,7 +120,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ALUNO__UsuarioId__1ED998B2">
+        <Association Name="FK__ALUNO__UsuarioId__1DE57479">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
           <End Role="ALUNO" Type="Self.ALUNO" Multiplicity="*" />
           <ReferentialConstraint>
@@ -135,8 +132,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__NOTA__COD_MATERI__2C3393D0">
-          <End Role="MATERIA" Type="Self.MATERIA" Multiplicity="1" />
+        <Association Name="FK__ALUNO_NOT__COD_A__30F848ED">
+          <End Role="ALUNO" Type="Self.ALUNO" Multiplicity="1" />
+          <End Role="ALUNO_NOTA" Type="Self.ALUNO_NOTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ALUNO">
+              <PropertyRef Name="COD_ALUNO" />
+            </Principal>
+            <Dependent Role="ALUNO_NOTA">
+              <PropertyRef Name="COD_ALUNO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ALUNO_NOT__COD_N__31EC6D26">
+          <End Role="NOTA" Type="Self.NOTA" Multiplicity="1" />
+          <End Role="ALUNO_NOTA" Type="Self.ALUNO_NOTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NOTA">
+              <PropertyRef Name="COD_NOTA" />
+            </Principal>
+            <Dependent Role="ALUNO_NOTA">
+              <PropertyRef Name="COD_NOTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NOTA__COD_MATERI__2D27B809">
+          <End Role="MATERIA" Type="Self.MATERIA" Multiplicity="0..1" />
           <End Role="NOTA" Type="Self.NOTA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MATERIA">
@@ -147,8 +168,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__NOTA__COD_PROF__2B3F6F97">
-          <End Role="PROFESSOR" Type="Self.PROFESSOR" Multiplicity="1" />
+        <Association Name="FK__NOTA__COD_PROF__2C3393D0">
+          <End Role="PROFESSOR" Type="Self.PROFESSOR" Multiplicity="0..1" />
           <End Role="NOTA" Type="Self.NOTA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PROFESSOR">
@@ -159,8 +180,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__NOTA__COD_TURMA__2D27B809">
-          <End Role="TURMA" Type="Self.TURMA" Multiplicity="1" />
+        <Association Name="FK__NOTA__COD_TURMA__2E1BDC42">
+          <End Role="TURMA" Type="Self.TURMA" Multiplicity="0..1" />
           <End Role="NOTA" Type="Self.NOTA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TURMA">
@@ -171,7 +192,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PROFESSOR__Usuar__182C9B23">
+        <Association Name="FK__PROFESSOR__Usuar__173876EA">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
           <End Role="PROFESSOR" Type="Self.PROFESSOR" Multiplicity="*" />
           <ReferentialConstraint>
@@ -183,7 +204,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PROFMATER__COD_M__24927208">
+        <Association Name="FK__PROFMATER__COD_M__25869641">
           <End Role="MATERIA" Type="Self.MATERIA" Multiplicity="1" />
           <End Role="PROFMATERIATURMA" Type="Self.PROFMATERIATURMA" Multiplicity="*" />
           <ReferentialConstraint>
@@ -195,7 +216,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PROFMATER__COD_P__239E4DCF">
+        <Association Name="FK__PROFMATER__COD_P__24927208">
           <End Role="PROFESSOR" Type="Self.PROFESSOR" Multiplicity="1" />
           <End Role="PROFMATERIATURMA" Type="Self.PROFMATERIATURMA" Multiplicity="*" />
           <ReferentialConstraint>
@@ -207,7 +228,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PROFMATER__COD_T__25869641">
+        <Association Name="FK__PROFMATER__COD_T__267ABA7A">
           <End Role="TURMA" Type="Self.TURMA" Multiplicity="1" />
           <End Role="PROFMATERIATURMA" Type="Self.PROFMATERIATURMA" Multiplicity="*" />
           <ReferentialConstraint>
@@ -215,6 +236,30 @@
               <PropertyRef Name="COD_TURMA" />
             </Principal>
             <Dependent Role="PROFMATERIATURMA">
+              <PropertyRef Name="COD_TURMA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TURMA_ALU__COD_A__20C1E124">
+          <End Role="ALUNO" Type="Self.ALUNO" Multiplicity="1" />
+          <End Role="TURMA_ALUNO" Type="Self.TURMA_ALUNO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ALUNO">
+              <PropertyRef Name="COD_ALUNO" />
+            </Principal>
+            <Dependent Role="TURMA_ALUNO">
+              <PropertyRef Name="COD_ALUNO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TURMA_ALU__COD_T__21B6055D">
+          <End Role="TURMA" Type="Self.TURMA" Multiplicity="1" />
+          <End Role="TURMA_ALUNO" Type="Self.TURMA_ALUNO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TURMA">
+              <PropertyRef Name="COD_TURMA" />
+            </Principal>
+            <Dependent Role="TURMA_ALUNO">
               <PropertyRef Name="COD_TURMA" />
             </Dependent>
           </ReferentialConstraint>
@@ -237,7 +282,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="BoletimOnlineModelStoreContainer">
+        <EntityContainer Name="BoletimOnline2ModelStoreContainer">
           <EntitySet Name="Administrador" EntityType="Self.Administrador" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ALUNO" EntityType="Self.ALUNO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ALUNO_NOTA" EntityType="Self.ALUNO_NOTA" Schema="dbo" store:Type="Tables" />
@@ -253,37 +298,53 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Administrador" EntitySet="Administrador" />
           </AssociationSet>
-          <AssociationSet Name="FK__ALUNO__UsuarioId__1ED998B2" Association="Self.FK__ALUNO__UsuarioId__1ED998B2">
+          <AssociationSet Name="FK__ALUNO__UsuarioId__1DE57479" Association="Self.FK__ALUNO__UsuarioId__1DE57479">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="ALUNO" EntitySet="ALUNO" />
           </AssociationSet>
-          <AssociationSet Name="FK__NOTA__COD_MATERI__2C3393D0" Association="Self.FK__NOTA__COD_MATERI__2C3393D0">
+          <AssociationSet Name="FK__ALUNO_NOT__COD_A__30F848ED" Association="Self.FK__ALUNO_NOT__COD_A__30F848ED">
+            <End Role="ALUNO" EntitySet="ALUNO" />
+            <End Role="ALUNO_NOTA" EntitySet="ALUNO_NOTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ALUNO_NOT__COD_N__31EC6D26" Association="Self.FK__ALUNO_NOT__COD_N__31EC6D26">
+            <End Role="NOTA" EntitySet="NOTA" />
+            <End Role="ALUNO_NOTA" EntitySet="ALUNO_NOTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NOTA__COD_MATERI__2D27B809" Association="Self.FK__NOTA__COD_MATERI__2D27B809">
             <End Role="MATERIA" EntitySet="MATERIA" />
             <End Role="NOTA" EntitySet="NOTA" />
           </AssociationSet>
-          <AssociationSet Name="FK__NOTA__COD_PROF__2B3F6F97" Association="Self.FK__NOTA__COD_PROF__2B3F6F97">
+          <AssociationSet Name="FK__NOTA__COD_PROF__2C3393D0" Association="Self.FK__NOTA__COD_PROF__2C3393D0">
             <End Role="PROFESSOR" EntitySet="PROFESSOR" />
             <End Role="NOTA" EntitySet="NOTA" />
           </AssociationSet>
-          <AssociationSet Name="FK__NOTA__COD_TURMA__2D27B809" Association="Self.FK__NOTA__COD_TURMA__2D27B809">
+          <AssociationSet Name="FK__NOTA__COD_TURMA__2E1BDC42" Association="Self.FK__NOTA__COD_TURMA__2E1BDC42">
             <End Role="TURMA" EntitySet="TURMA" />
             <End Role="NOTA" EntitySet="NOTA" />
           </AssociationSet>
-          <AssociationSet Name="FK__PROFESSOR__Usuar__182C9B23" Association="Self.FK__PROFESSOR__Usuar__182C9B23">
+          <AssociationSet Name="FK__PROFESSOR__Usuar__173876EA" Association="Self.FK__PROFESSOR__Usuar__173876EA">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="PROFESSOR" EntitySet="PROFESSOR" />
           </AssociationSet>
-          <AssociationSet Name="FK__PROFMATER__COD_M__24927208" Association="Self.FK__PROFMATER__COD_M__24927208">
+          <AssociationSet Name="FK__PROFMATER__COD_M__25869641" Association="Self.FK__PROFMATER__COD_M__25869641">
             <End Role="MATERIA" EntitySet="MATERIA" />
             <End Role="PROFMATERIATURMA" EntitySet="PROFMATERIATURMA" />
           </AssociationSet>
-          <AssociationSet Name="FK__PROFMATER__COD_P__239E4DCF" Association="Self.FK__PROFMATER__COD_P__239E4DCF">
+          <AssociationSet Name="FK__PROFMATER__COD_P__24927208" Association="Self.FK__PROFMATER__COD_P__24927208">
             <End Role="PROFESSOR" EntitySet="PROFESSOR" />
             <End Role="PROFMATERIATURMA" EntitySet="PROFMATERIATURMA" />
           </AssociationSet>
-          <AssociationSet Name="FK__PROFMATER__COD_T__25869641" Association="Self.FK__PROFMATER__COD_T__25869641">
+          <AssociationSet Name="FK__PROFMATER__COD_T__267ABA7A" Association="Self.FK__PROFMATER__COD_T__267ABA7A">
             <End Role="TURMA" EntitySet="TURMA" />
             <End Role="PROFMATERIATURMA" EntitySet="PROFMATERIATURMA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TURMA_ALU__COD_A__20C1E124" Association="Self.FK__TURMA_ALU__COD_A__20C1E124">
+            <End Role="ALUNO" EntitySet="ALUNO" />
+            <End Role="TURMA_ALUNO" EntitySet="TURMA_ALUNO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TURMA_ALU__COD_T__21B6055D" Association="Self.FK__TURMA_ALU__COD_T__21B6055D">
+            <End Role="TURMA" EntitySet="TURMA" />
+            <End Role="TURMA_ALUNO" EntitySet="TURMA_ALUNO" />
           </AssociationSet>
           <AssociationSet Name="FK_PROFTURMA_ATV" Association="Self.FK_PROFTURMA_ATV">
             <End Role="PROFMATERIATURMA" EntitySet="PROFMATERIATURMA" />
@@ -294,7 +355,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="BoletimOnlineModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="BoletimOnline2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Administrador">
           <Key>
             <PropertyRef Name="Cod_Administrador" />
@@ -312,15 +373,9 @@
           <Property Name="EMAIL_ALUNO" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
           <Property Name="NOME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="UsuarioId" Type="Int32" />
-          <NavigationProperty Name="Usuario" Relationship="Self.FK__ALUNO__UsuarioId__1ED998B2" FromRole="ALUNO" ToRole="Usuario" />
-        </EntityType>
-        <EntityType Name="ALUNO_NOTA">
-          <Key>
-            <PropertyRef Name="COD_ALUNO" />
-            <PropertyRef Name="COD_NOTA" />
-          </Key>
-          <Property Name="COD_ALUNO" Type="Int32" Nullable="false" />
-          <Property Name="COD_NOTA" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__ALUNO__UsuarioId__1DE57479" FromRole="ALUNO" ToRole="Usuario" />
+          <NavigationProperty Name="NOTA" Relationship="Self.ALUNO_NOTA" FromRole="ALUNO" ToRole="NOTA" />
+          <NavigationProperty Name="TURMA" Relationship="Self.TURMA_ALUNO" FromRole="ALUNO" ToRole="TURMA" />
         </EntityType>
         <EntityType Name="AVALIACAO">
           <Key>
@@ -343,26 +398,23 @@
           </Key>
           <Property Name="COD_MATERIA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="NOME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="NOTA" Relationship="Self.FK__NOTA__COD_MATERI__2C3393D0" FromRole="MATERIA" ToRole="NOTA" />
-          <NavigationProperty Name="PROFMATERIATURMA" Relationship="Self.FK__PROFMATER__COD_M__24927208" FromRole="MATERIA" ToRole="PROFMATERIATURMA" />
+          <NavigationProperty Name="NOTA" Relationship="Self.FK__NOTA__COD_MATERI__2D27B809" FromRole="MATERIA" ToRole="NOTA" />
+          <NavigationProperty Name="PROFMATERIATURMA" Relationship="Self.FK__PROFMATER__COD_M__25869641" FromRole="MATERIA" ToRole="PROFMATERIATURMA" />
         </EntityType>
         <EntityType Name="NOTA">
           <Key>
             <PropertyRef Name="COD_NOTA" />
-            <PropertyRef Name="COD_ALUNO" />
-            <PropertyRef Name="COD_PROF" />
-            <PropertyRef Name="COD_MATERIA" />
-            <PropertyRef Name="COD_TURMA" />
           </Key>
           <Property Name="COD_NOTA" Type="Int32" Nullable="false" />
-          <Property Name="COD_ALUNO" Type="Int32" Nullable="false" />
-          <Property Name="COD_PROF" Type="Int32" Nullable="false" />
-          <Property Name="COD_MATERIA" Type="Int32" Nullable="false" />
-          <Property Name="COD_TURMA" Type="Int32" Nullable="false" />
+          <Property Name="COD_ALUNO" Type="Int32" />
+          <Property Name="COD_PROF" Type="Int32" />
+          <Property Name="COD_MATERIA" Type="Int32" />
+          <Property Name="COD_TURMA" Type="Int32" />
           <Property Name="VALOR" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
-          <NavigationProperty Name="MATERIA" Relationship="Self.FK__NOTA__COD_MATERI__2C3393D0" FromRole="NOTA" ToRole="MATERIA" />
-          <NavigationProperty Name="PROFESSOR" Relationship="Self.FK__NOTA__COD_PROF__2B3F6F97" FromRole="NOTA" ToRole="PROFESSOR" />
-          <NavigationProperty Name="TURMA" Relationship="Self.FK__NOTA__COD_TURMA__2D27B809" FromRole="NOTA" ToRole="TURMA" />
+          <NavigationProperty Name="MATERIA" Relationship="Self.FK__NOTA__COD_MATERI__2D27B809" FromRole="NOTA" ToRole="MATERIA" />
+          <NavigationProperty Name="PROFESSOR" Relationship="Self.FK__NOTA__COD_PROF__2C3393D0" FromRole="NOTA" ToRole="PROFESSOR" />
+          <NavigationProperty Name="TURMA" Relationship="Self.FK__NOTA__COD_TURMA__2E1BDC42" FromRole="NOTA" ToRole="TURMA" />
+          <NavigationProperty Name="ALUNO" Relationship="Self.ALUNO_NOTA" FromRole="NOTA" ToRole="ALUNO" />
         </EntityType>
         <EntityType Name="PROFESSOR">
           <Key>
@@ -372,9 +424,9 @@
           <Property Name="EMAIL_PROFESSOR" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
           <Property Name="NOME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="UsuarioId" Type="Int32" />
-          <NavigationProperty Name="NOTA" Relationship="Self.FK__NOTA__COD_PROF__2B3F6F97" FromRole="PROFESSOR" ToRole="NOTA" />
-          <NavigationProperty Name="Usuario" Relationship="Self.FK__PROFESSOR__Usuar__182C9B23" FromRole="PROFESSOR" ToRole="Usuario" />
-          <NavigationProperty Name="PROFMATERIATURMA" Relationship="Self.FK__PROFMATER__COD_P__239E4DCF" FromRole="PROFESSOR" ToRole="PROFMATERIATURMA" />
+          <NavigationProperty Name="NOTA" Relationship="Self.FK__NOTA__COD_PROF__2C3393D0" FromRole="PROFESSOR" ToRole="NOTA" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK__PROFESSOR__Usuar__173876EA" FromRole="PROFESSOR" ToRole="Usuario" />
+          <NavigationProperty Name="PROFMATERIATURMA" Relationship="Self.FK__PROFMATER__COD_P__24927208" FromRole="PROFESSOR" ToRole="PROFMATERIATURMA" />
         </EntityType>
         <EntityType Name="PROFMATERIATURMA">
           <Key>
@@ -388,9 +440,9 @@
           <Property Name="COD_TURMA" Type="Int32" Nullable="false" />
           <Property Name="PERIODO_LETIVO" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AVALIACAO" Relationship="Self.FK_PROFTURMA_ATV" FromRole="PROFMATERIATURMA" ToRole="AVALIACAO" />
-          <NavigationProperty Name="MATERIA" Relationship="Self.FK__PROFMATER__COD_M__24927208" FromRole="PROFMATERIATURMA" ToRole="MATERIA" />
-          <NavigationProperty Name="PROFESSOR" Relationship="Self.FK__PROFMATER__COD_P__239E4DCF" FromRole="PROFMATERIATURMA" ToRole="PROFESSOR" />
-          <NavigationProperty Name="TURMA" Relationship="Self.FK__PROFMATER__COD_T__25869641" FromRole="PROFMATERIATURMA" ToRole="TURMA" />
+          <NavigationProperty Name="MATERIA" Relationship="Self.FK__PROFMATER__COD_M__25869641" FromRole="PROFMATERIATURMA" ToRole="MATERIA" />
+          <NavigationProperty Name="PROFESSOR" Relationship="Self.FK__PROFMATER__COD_P__24927208" FromRole="PROFMATERIATURMA" ToRole="PROFESSOR" />
+          <NavigationProperty Name="TURMA" Relationship="Self.FK__PROFMATER__COD_T__267ABA7A" FromRole="PROFMATERIATURMA" ToRole="TURMA" />
         </EntityType>
         <EntityType Name="TURMA">
           <Key>
@@ -399,16 +451,9 @@
           <Property Name="COD_TURMA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SERIE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="PERIODO_LET" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="NOTA" Relationship="Self.FK__NOTA__COD_TURMA__2D27B809" FromRole="TURMA" ToRole="NOTA" />
-          <NavigationProperty Name="PROFMATERIATURMA" Relationship="Self.FK__PROFMATER__COD_T__25869641" FromRole="TURMA" ToRole="PROFMATERIATURMA" />
-        </EntityType>
-        <EntityType Name="TURMA_ALUNO">
-          <Key>
-            <PropertyRef Name="COD_ALUNO" />
-            <PropertyRef Name="COD_TURMA" />
-          </Key>
-          <Property Name="COD_ALUNO" Type="Int32" Nullable="false" />
-          <Property Name="COD_TURMA" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="NOTA" Relationship="Self.FK__NOTA__COD_TURMA__2E1BDC42" FromRole="TURMA" ToRole="NOTA" />
+          <NavigationProperty Name="PROFMATERIATURMA" Relationship="Self.FK__PROFMATER__COD_T__267ABA7A" FromRole="TURMA" ToRole="PROFMATERIATURMA" />
+          <NavigationProperty Name="ALUNO" Relationship="Self.TURMA_ALUNO" FromRole="TURMA" ToRole="ALUNO" />
         </EntityType>
         <EntityType Name="Usuario">
           <Key>
@@ -417,9 +462,10 @@
           <Property Name="UsuarioId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="HashSenha" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="FlagSenhaTemp" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Administrador" Relationship="Self.FK__Administr__Usuar__145C0A3F" FromRole="Usuario" ToRole="Administrador" />
-          <NavigationProperty Name="ALUNO" Relationship="Self.FK__ALUNO__UsuarioId__1ED998B2" FromRole="Usuario" ToRole="ALUNO" />
-          <NavigationProperty Name="PROFESSOR" Relationship="Self.FK__PROFESSOR__Usuar__182C9B23" FromRole="Usuario" ToRole="PROFESSOR" />
+          <NavigationProperty Name="ALUNO" Relationship="Self.FK__ALUNO__UsuarioId__1DE57479" FromRole="Usuario" ToRole="ALUNO" />
+          <NavigationProperty Name="PROFESSOR" Relationship="Self.FK__PROFESSOR__Usuar__173876EA" FromRole="Usuario" ToRole="PROFESSOR" />
         </EntityType>
         <Association Name="FK__Administr__Usuar__145C0A3F">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
@@ -433,7 +479,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ALUNO__UsuarioId__1ED998B2">
+        <Association Name="FK__ALUNO__UsuarioId__1DE57479">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
           <End Role="ALUNO" Type="Self.ALUNO" Multiplicity="*" />
           <ReferentialConstraint>
@@ -463,8 +509,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__NOTA__COD_MATERI__2C3393D0">
-          <End Role="MATERIA" Type="Self.MATERIA" Multiplicity="1" />
+        <Association Name="FK__NOTA__COD_MATERI__2D27B809">
+          <End Role="MATERIA" Type="Self.MATERIA" Multiplicity="0..1" />
           <End Role="NOTA" Type="Self.NOTA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="MATERIA">
@@ -475,7 +521,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PROFMATER__COD_M__24927208">
+        <Association Name="FK__PROFMATER__COD_M__25869641">
           <End Role="MATERIA" Type="Self.MATERIA" Multiplicity="1" />
           <End Role="PROFMATERIATURMA" Type="Self.PROFMATERIATURMA" Multiplicity="*" />
           <ReferentialConstraint>
@@ -487,8 +533,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__NOTA__COD_PROF__2B3F6F97">
-          <End Role="PROFESSOR" Type="Self.PROFESSOR" Multiplicity="1" />
+        <Association Name="FK__NOTA__COD_PROF__2C3393D0">
+          <End Role="PROFESSOR" Type="Self.PROFESSOR" Multiplicity="0..1" />
           <End Role="NOTA" Type="Self.NOTA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="PROFESSOR">
@@ -499,8 +545,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__NOTA__COD_TURMA__2D27B809">
-          <End Role="TURMA" Type="Self.TURMA" Multiplicity="1" />
+        <Association Name="FK__NOTA__COD_TURMA__2E1BDC42">
+          <End Role="TURMA" Type="Self.TURMA" Multiplicity="0..1" />
           <End Role="NOTA" Type="Self.NOTA" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TURMA">
@@ -511,7 +557,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PROFESSOR__Usuar__182C9B23">
+        <Association Name="FK__PROFESSOR__Usuar__173876EA">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
           <End Role="PROFESSOR" Type="Self.PROFESSOR" Multiplicity="*" />
           <ReferentialConstraint>
@@ -523,7 +569,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PROFMATER__COD_P__239E4DCF">
+        <Association Name="FK__PROFMATER__COD_P__24927208">
           <End Role="PROFESSOR" Type="Self.PROFESSOR" Multiplicity="1" />
           <End Role="PROFMATERIATURMA" Type="Self.PROFMATERIATURMA" Multiplicity="*" />
           <ReferentialConstraint>
@@ -535,7 +581,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PROFMATER__COD_T__25869641">
+        <Association Name="FK__PROFMATER__COD_T__267ABA7A">
           <End Role="TURMA" Type="Self.TURMA" Multiplicity="1" />
           <End Role="PROFMATERIATURMA" Type="Self.PROFMATERIATURMA" Multiplicity="*" />
           <ReferentialConstraint>
@@ -547,23 +593,29 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="BoletimOnlineEntities5" annotation:LazyLoadingEnabled="true">
+        <Association Name="ALUNO_NOTA">
+          <End Role="ALUNO" Type="Self.ALUNO" Multiplicity="*" />
+          <End Role="NOTA" Type="Self.NOTA" Multiplicity="*" />
+        </Association>
+        <Association Name="TURMA_ALUNO">
+          <End Role="ALUNO" Type="Self.ALUNO" Multiplicity="*" />
+          <End Role="TURMA" Type="Self.TURMA" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="BoletimOnline2Entities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Administrador" EntityType="Self.Administrador" />
           <EntitySet Name="ALUNO" EntityType="Self.ALUNO" />
-          <EntitySet Name="ALUNO_NOTA" EntityType="Self.ALUNO_NOTA" />
           <EntitySet Name="AVALIACAO" EntityType="Self.AVALIACAO" />
           <EntitySet Name="MATERIA" EntityType="Self.MATERIA" />
           <EntitySet Name="NOTA" EntityType="Self.NOTA" />
           <EntitySet Name="PROFESSOR" EntityType="Self.PROFESSOR" />
           <EntitySet Name="PROFMATERIATURMA" EntityType="Self.PROFMATERIATURMA" />
           <EntitySet Name="TURMA" EntityType="Self.TURMA" />
-          <EntitySet Name="TURMA_ALUNO" EntityType="Self.TURMA_ALUNO" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
           <AssociationSet Name="FK__Administr__Usuar__145C0A3F" Association="Self.FK__Administr__Usuar__145C0A3F">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Administrador" EntitySet="Administrador" />
           </AssociationSet>
-          <AssociationSet Name="FK__ALUNO__UsuarioId__1ED998B2" Association="Self.FK__ALUNO__UsuarioId__1ED998B2">
+          <AssociationSet Name="FK__ALUNO__UsuarioId__1DE57479" Association="Self.FK__ALUNO__UsuarioId__1DE57479">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="ALUNO" EntitySet="ALUNO" />
           </AssociationSet>
@@ -571,33 +623,41 @@
             <End Role="PROFMATERIATURMA" EntitySet="PROFMATERIATURMA" />
             <End Role="AVALIACAO" EntitySet="AVALIACAO" />
           </AssociationSet>
-          <AssociationSet Name="FK__NOTA__COD_MATERI__2C3393D0" Association="Self.FK__NOTA__COD_MATERI__2C3393D0">
+          <AssociationSet Name="FK__NOTA__COD_MATERI__2D27B809" Association="Self.FK__NOTA__COD_MATERI__2D27B809">
             <End Role="MATERIA" EntitySet="MATERIA" />
             <End Role="NOTA" EntitySet="NOTA" />
           </AssociationSet>
-          <AssociationSet Name="FK__PROFMATER__COD_M__24927208" Association="Self.FK__PROFMATER__COD_M__24927208">
+          <AssociationSet Name="FK__PROFMATER__COD_M__25869641" Association="Self.FK__PROFMATER__COD_M__25869641">
             <End Role="MATERIA" EntitySet="MATERIA" />
             <End Role="PROFMATERIATURMA" EntitySet="PROFMATERIATURMA" />
           </AssociationSet>
-          <AssociationSet Name="FK__NOTA__COD_PROF__2B3F6F97" Association="Self.FK__NOTA__COD_PROF__2B3F6F97">
+          <AssociationSet Name="FK__NOTA__COD_PROF__2C3393D0" Association="Self.FK__NOTA__COD_PROF__2C3393D0">
             <End Role="PROFESSOR" EntitySet="PROFESSOR" />
             <End Role="NOTA" EntitySet="NOTA" />
           </AssociationSet>
-          <AssociationSet Name="FK__NOTA__COD_TURMA__2D27B809" Association="Self.FK__NOTA__COD_TURMA__2D27B809">
+          <AssociationSet Name="FK__NOTA__COD_TURMA__2E1BDC42" Association="Self.FK__NOTA__COD_TURMA__2E1BDC42">
             <End Role="TURMA" EntitySet="TURMA" />
             <End Role="NOTA" EntitySet="NOTA" />
           </AssociationSet>
-          <AssociationSet Name="FK__PROFESSOR__Usuar__182C9B23" Association="Self.FK__PROFESSOR__Usuar__182C9B23">
+          <AssociationSet Name="FK__PROFESSOR__Usuar__173876EA" Association="Self.FK__PROFESSOR__Usuar__173876EA">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="PROFESSOR" EntitySet="PROFESSOR" />
           </AssociationSet>
-          <AssociationSet Name="FK__PROFMATER__COD_P__239E4DCF" Association="Self.FK__PROFMATER__COD_P__239E4DCF">
+          <AssociationSet Name="FK__PROFMATER__COD_P__24927208" Association="Self.FK__PROFMATER__COD_P__24927208">
             <End Role="PROFESSOR" EntitySet="PROFESSOR" />
             <End Role="PROFMATERIATURMA" EntitySet="PROFMATERIATURMA" />
           </AssociationSet>
-          <AssociationSet Name="FK__PROFMATER__COD_T__25869641" Association="Self.FK__PROFMATER__COD_T__25869641">
+          <AssociationSet Name="FK__PROFMATER__COD_T__267ABA7A" Association="Self.FK__PROFMATER__COD_T__267ABA7A">
             <End Role="TURMA" EntitySet="TURMA" />
             <End Role="PROFMATERIATURMA" EntitySet="PROFMATERIATURMA" />
+          </AssociationSet>
+          <AssociationSet Name="ALUNO_NOTA" Association="Self.ALUNO_NOTA">
+            <End Role="ALUNO" EntitySet="ALUNO" />
+            <End Role="NOTA" EntitySet="NOTA" />
+          </AssociationSet>
+          <AssociationSet Name="TURMA_ALUNO" Association="Self.TURMA_ALUNO">
+            <End Role="ALUNO" EntitySet="ALUNO" />
+            <End Role="TURMA" EntitySet="TURMA" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -605,9 +665,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="BoletimOnlineModelStoreContainer" CdmEntityContainer="BoletimOnlineEntities5">
+        <EntityContainerMapping StorageEntityContainer="BoletimOnline2ModelStoreContainer" CdmEntityContainer="BoletimOnline2Entities1">
           <EntitySetMapping Name="Administrador">
-            <EntityTypeMapping TypeName="BoletimOnlineModel.Administrador">
+            <EntityTypeMapping TypeName="BoletimOnline2Model.Administrador">
               <MappingFragment StoreEntitySet="Administrador">
                 <ScalarProperty Name="Cod_Administrador" ColumnName="Cod_Administrador" />
                 <ScalarProperty Name="Nome_Administrador" ColumnName="Nome_Administrador" />
@@ -616,7 +676,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ALUNO">
-            <EntityTypeMapping TypeName="BoletimOnlineModel.ALUNO">
+            <EntityTypeMapping TypeName="BoletimOnline2Model.ALUNO">
               <MappingFragment StoreEntitySet="ALUNO">
                 <ScalarProperty Name="COD_ALUNO" ColumnName="COD_ALUNO" />
                 <ScalarProperty Name="EMAIL_ALUNO" ColumnName="EMAIL_ALUNO" />
@@ -625,16 +685,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ALUNO_NOTA">
-            <EntityTypeMapping TypeName="BoletimOnlineModel.ALUNO_NOTA">
-              <MappingFragment StoreEntitySet="ALUNO_NOTA">
-                <ScalarProperty Name="COD_ALUNO" ColumnName="COD_ALUNO" />
-                <ScalarProperty Name="COD_NOTA" ColumnName="COD_NOTA" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="AVALIACAO">
-            <EntityTypeMapping TypeName="BoletimOnlineModel.AVALIACAO">
+            <EntityTypeMapping TypeName="BoletimOnline2Model.AVALIACAO">
               <MappingFragment StoreEntitySet="AVALIACAO">
                 <ScalarProperty Name="COD_AVALIACAO" ColumnName="COD_AVALIACAO" />
                 <ScalarProperty Name="NOME" ColumnName="NOME" />
@@ -649,7 +701,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MATERIA">
-            <EntityTypeMapping TypeName="BoletimOnlineModel.MATERIA">
+            <EntityTypeMapping TypeName="BoletimOnline2Model.MATERIA">
               <MappingFragment StoreEntitySet="MATERIA">
                 <ScalarProperty Name="COD_MATERIA" ColumnName="COD_MATERIA" />
                 <ScalarProperty Name="NOME" ColumnName="NOME" />
@@ -657,7 +709,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NOTA">
-            <EntityTypeMapping TypeName="BoletimOnlineModel.NOTA">
+            <EntityTypeMapping TypeName="BoletimOnline2Model.NOTA">
               <MappingFragment StoreEntitySet="NOTA">
                 <ScalarProperty Name="COD_NOTA" ColumnName="COD_NOTA" />
                 <ScalarProperty Name="COD_ALUNO" ColumnName="COD_ALUNO" />
@@ -669,7 +721,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PROFESSOR">
-            <EntityTypeMapping TypeName="BoletimOnlineModel.PROFESSOR">
+            <EntityTypeMapping TypeName="BoletimOnline2Model.PROFESSOR">
               <MappingFragment StoreEntitySet="PROFESSOR">
                 <ScalarProperty Name="COD_PROF" ColumnName="COD_PROF" />
                 <ScalarProperty Name="EMAIL_PROFESSOR" ColumnName="EMAIL_PROFESSOR" />
@@ -679,7 +731,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="PROFMATERIATURMA">
-            <EntityTypeMapping TypeName="BoletimOnlineModel.PROFMATERIATURMA">
+            <EntityTypeMapping TypeName="BoletimOnline2Model.PROFMATERIATURMA">
               <MappingFragment StoreEntitySet="PROFMATERIATURMA">
                 <ScalarProperty Name="COD_PROF" ColumnName="COD_PROF" />
                 <ScalarProperty Name="COD_MATERIA" ColumnName="COD_MATERIA" />
@@ -689,7 +741,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TURMA">
-            <EntityTypeMapping TypeName="BoletimOnlineModel.TURMA">
+            <EntityTypeMapping TypeName="BoletimOnline2Model.TURMA">
               <MappingFragment StoreEntitySet="TURMA">
                 <ScalarProperty Name="COD_TURMA" ColumnName="COD_TURMA" />
                 <ScalarProperty Name="SERIE" ColumnName="SERIE" />
@@ -697,23 +749,32 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TURMA_ALUNO">
-            <EntityTypeMapping TypeName="BoletimOnlineModel.TURMA_ALUNO">
-              <MappingFragment StoreEntitySet="TURMA_ALUNO">
-                <ScalarProperty Name="COD_ALUNO" ColumnName="COD_ALUNO" />
-                <ScalarProperty Name="COD_TURMA" ColumnName="COD_TURMA" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Usuario">
-            <EntityTypeMapping TypeName="BoletimOnlineModel.Usuario">
+            <EntityTypeMapping TypeName="BoletimOnline2Model.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
                 <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="HashSenha" ColumnName="HashSenha" />
+                <ScalarProperty Name="FlagSenhaTemp" ColumnName="FlagSenhaTemp" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <AssociationSetMapping Name="ALUNO_NOTA" TypeName="BoletimOnline2Model.ALUNO_NOTA" StoreEntitySet="ALUNO_NOTA">
+            <EndProperty Name="ALUNO">
+              <ScalarProperty Name="COD_ALUNO" ColumnName="COD_ALUNO" />
+            </EndProperty>
+            <EndProperty Name="NOTA">
+              <ScalarProperty Name="COD_NOTA" ColumnName="COD_NOTA" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="TURMA_ALUNO" TypeName="BoletimOnline2Model.TURMA_ALUNO" StoreEntitySet="TURMA_ALUNO">
+            <EndProperty Name="ALUNO">
+              <ScalarProperty Name="COD_ALUNO" ColumnName="COD_ALUNO" />
+            </EndProperty>
+            <EndProperty Name="TURMA">
+              <ScalarProperty Name="COD_TURMA" ColumnName="COD_TURMA" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

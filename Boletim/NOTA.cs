@@ -14,15 +14,23 @@ namespace Boletim
     
     public partial class NOTA
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public NOTA()
+        {
+            this.ALUNO = new HashSet<ALUNO>();
+        }
+    
         public int COD_NOTA { get; set; }
-        public int COD_ALUNO { get; set; }
-        public int COD_PROF { get; set; }
-        public int COD_MATERIA { get; set; }
-        public int COD_TURMA { get; set; }
+        public Nullable<int> COD_ALUNO { get; set; }
+        public Nullable<int> COD_PROF { get; set; }
+        public Nullable<int> COD_MATERIA { get; set; }
+        public Nullable<int> COD_TURMA { get; set; }
         public decimal VALOR { get; set; }
     
         public virtual MATERIA MATERIA { get; set; }
         public virtual PROFESSOR PROFESSOR { get; set; }
         public virtual TURMA TURMA { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ALUNO> ALUNO { get; set; }
     }
 }

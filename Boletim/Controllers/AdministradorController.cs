@@ -15,7 +15,7 @@ using SistemaBoletim.Repositories;
 
 public class AdministradorController : Controller
 {
-    private BoletimOnlineEntities5 db = new BoletimOnlineEntities5();
+    private BoletimOnline2Entities1 db = new BoletimOnline2Entities1();
 
 
     // GET: Administrador
@@ -40,6 +40,94 @@ public class AdministradorController : Controller
         return View(administrador);
     }
 
+    public ActionResult VerificaSeEmailJaExiste(string Email)
+    {
+        var Usuario = db.Usuario.Where(u => u.Email.ToUpper() == Email.ToUpper()).FirstOrDefault();
+        var EmailNaoExiste = true;
+        if (Usuario != null)
+        {
+            EmailNaoExiste = false;
+        }
+
+        return Json(EmailNaoExiste, JsonRequestBehavior.AllowGet);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public ActionResult CreateAdmin( AdminViewModel adminViewModel)
+    {
+        if (ModelState.IsValid)
+        {
+            Administrador administrador = new Administrador()
+            {
+                Nome_Administrador = adminViewModel.Nome,
+                Usuario = new Usuario()
+                {
+                    Email = adminViewModel.Email,
+                    HashSenha = GerarHash(adminViewModel.Senha),
+                    FlagSenhaTemp = adminViewModel.SenhaTemporaria ? "S" : "N"
+                }
+            };
+            db.Administrador.Add(administrador);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        return View(adminViewModel);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public ActionResult EditAdmin(AdminViewModel adminViewModel)
+    {
+        if (ModelState.IsValid)
+        {
+            Administrador admin = db.Administrador.Find(adminViewModel.AdminId);
+            Administrador administrador = new Administrador()
+            {
+                Cod_Administrador = admin.Cod_Administrador,
+                Nome_Administrador = adminViewModel.Nome,
+                Usuario = new Usuario()
+                {
+                    UsuarioId = admin.Usuario.UsuarioId,
+                    Email = adminViewModel.Email,
+                    HashSenha = GerarHash(adminViewModel.Senha),
+                    FlagSenhaTemp = adminViewModel.SenhaTemporaria ? "S" : "N"
+                }
+            };
+            db.Entry(administrador).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        return View(adminViewModel);
+    }
+
+    public ActionResult EditAdmin(int? id)
+    {
+        if (id == null)
+        {
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
+        Administrador administrador = db.Administrador.Find(id);
+        if (administrador == null)
+        {
+            return HttpNotFound();
+        }
+        AdminViewModel adminViewModel = new AdminViewModel()
+        {
+            AdminId = administrador.Cod_Administrador,
+            Email = administrador.Usuario.Email,
+            Nome = administrador.Nome_Administrador
+        };
+        return View(adminViewModel);
+    }
+
+    public ActionResult CreateAdmin()
+    {
+       
+        return View();
+    }
     // GET: Administrador/Create
     public ActionResult Create()
     {

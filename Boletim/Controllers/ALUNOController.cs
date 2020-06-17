@@ -12,7 +12,7 @@ namespace Boletim.Controllers
 {
     public class ALUNOController : Controller
     {
-        private BoletimOnlineEntities5 db = new BoletimOnlineEntities5();
+        private BoletimOnline2Entities1 db = new BoletimOnline2Entities1();
 
         // GET: ALUNO
         public ActionResult Index()

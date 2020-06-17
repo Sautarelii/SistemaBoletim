@@ -25,6 +25,7 @@ namespace Boletim
         public int UsuarioId { get; set; }
         public string Email { get; set; }
         public string HashSenha { get; set; }
+        public string FlagSenhaTemp { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Administrador> Administrador { get; set; }

@@ -11,10 +11,10 @@ namespace SistemaBoletim.Repositories
 {
     public class UsuarioRepository : IDisposable
     {
-        private readonly BoletimOnlineEntities5 db;
+        private readonly BoletimOnline2Entities1 db;
         private bool disposed = false;
 
-        public UsuarioRepository(BoletimOnlineEntities5 context)
+        public UsuarioRepository(BoletimOnline2Entities1 context)
         {
             this.db = context;
         }

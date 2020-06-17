@@ -12,7 +12,7 @@ namespace Boletim.Controllers
 {
     public class AVALIACAOController : Controller
     {
-        private BoletimOnlineEntities5 db = new BoletimOnlineEntities5();
+        private BoletimOnline2Entities1 db = new BoletimOnline2Entities1();
 
         // GET: AVALIACAO
         public ActionResult Index()

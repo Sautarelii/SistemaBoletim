@@ -146,9 +146,6 @@
     <Compile Include="ALUNO.cs">
       <DependentUpon>ModelBoletimOnline.tt</DependentUpon>
     </Compile>
-    <Compile Include="ALUNO_NOTA.cs">
-      <DependentUpon>ModelBoletimOnline.tt</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -185,6 +182,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelBoletimOnline.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\AdminViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="NOTA.cs">
       <DependentUpon>ModelBoletimOnline.tt</DependentUpon>
@@ -199,9 +197,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\UsuarioRepository.cs" />
     <Compile Include="TURMA.cs">
-      <DependentUpon>ModelBoletimOnline.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TURMA_ALUNO.cs">
       <DependentUpon>ModelBoletimOnline.tt</DependentUpon>
     </Compile>
     <Compile Include="Usuario.cs">
@@ -312,6 +307,8 @@
     <Content Include="Views\PROFMATERIATURMA\Details.cshtml" />
     <Content Include="Views\PROFMATERIATURMA\Edit.cshtml" />
     <Content Include="Views\PROFMATERIATURMA\Index.cshtml" />
+    <Content Include="Views\Administrador\CreateAdmin.cshtml" />
+    <Content Include="Views\Administrador\EditAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

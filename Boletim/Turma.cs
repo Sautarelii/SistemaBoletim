@@ -19,6 +19,7 @@ namespace Boletim
         {
             this.NOTA = new HashSet<NOTA>();
             this.PROFMATERIATURMA = new HashSet<PROFMATERIATURMA>();
+            this.ALUNO = new HashSet<ALUNO>();
         }
     
         public int COD_TURMA { get; set; }
@@ -29,5 +30,7 @@ namespace Boletim
         public virtual ICollection<NOTA> NOTA { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PROFMATERIATURMA> PROFMATERIATURMA { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ALUNO> ALUNO { get; set; }
     }
 }

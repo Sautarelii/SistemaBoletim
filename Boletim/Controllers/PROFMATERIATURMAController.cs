@@ -12,7 +12,7 @@ namespace Boletim.Controllers
 {
     public class PROFMATERIATURMAController : Controller
     {
-        private BoletimOnlineEntities5 db = new BoletimOnlineEntities5();
+        private BoletimOnline2Entities1 db = new BoletimOnline2Entities1();
 
         // GET: PROFMATERIATURMA
         public ActionResult Index()
