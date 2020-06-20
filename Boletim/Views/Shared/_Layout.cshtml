@@ -33,8 +33,9 @@
                     @if (Usuario.IsAuthenticated)
                     {
 
-                        <li>@Html.ActionLink("Início", "Index", "Home")</li>
+                    <li>@Html.ActionLink("Administrador", "Index", "Administrador")</li>
                         <li>@Html.ActionLink("Cadastramentos", "Cadastramentos", "Home")</li>
+                        <li>@Html.ActionLink("Atribuição", "Index", "PROFMATERIATURMA")</li>
                     }
 
                 </ul>

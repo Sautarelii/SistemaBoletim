@@ -25,10 +25,12 @@
     </style>
     <div class="um">
         <h2>Administrador</h2>
-
+        <br/>
+       
         <p>
-            @Html.ActionLink("Create New", "CreateAdmin")
+            @Html.ActionLink("Adicionar Administrador", "CreateAdmin", new {}, new { @class = "btn btn-success" })
         </p>
+        <br/>
         <table class="table">
             <tr>
                 <th>
@@ -50,9 +52,9 @@
                         @Html.DisplayFor(modelItem => item.Usuario.Email)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "EditAdmin", new { id = item.Cod_Administrador }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Cod_Administrador }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Cod_Administrador })
+                        @Html.ActionLink("Editar", "EditAdmin", new { id = item.Cod_Administrador },new {@class = "btn btn-success" }) |
+                        @Html.ActionLink("Detalhar", "Details", new { id = item.Cod_Administrador }, new { @class = "btn btn-primary" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Cod_Administrador }, new { @class = "btn btn-danger" })
                     </td>
                 </tr>
             }

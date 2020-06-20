@@ -30,7 +30,7 @@ NOME VARCHAR(100),
 
 CONSTRAINT PK_PROFESSOR PRIMARY KEY (COD_PROF)
 )
-SELECT * FROM PROFESSOR
+SELECT * FROM Administrador
 
  
 
@@ -148,3 +148,6 @@ insert into Usuario (Email,HashSenha,FlagSenhaTemp) values ('adm@gmail.com','81d
 
 
 Insert Administrador (Nome_Administrador,UsuarioId) values ('Prof', 2) 
+
+
+Select * from PROFMATERIATURMA

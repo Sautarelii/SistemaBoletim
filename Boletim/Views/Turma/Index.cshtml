@@ -27,8 +27,11 @@
     <h2>Turma</h2>
 
     <p>
-        @Html.ActionLink("Create New", "Create")
+        <br>
+        @Html.ActionLink("Criar Turma", "Create", new { }, new { @class = "btn btn-success" })
     </p>
+    <br>
+    <br>
     <table class="table">
         <tr>
             <th>
@@ -50,9 +53,10 @@
                     @Html.DisplayFor(modelItem => item.PERIODO_LET)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.COD_TURMA }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.COD_TURMA }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.COD_TURMA })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.COD_TURMA }, new { @class = "btn btn-success" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.COD_TURMA }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.COD_TURMA }, new { @class = "btn btn-danger" }
+)
                 </td>
             </tr>
         }
@@ -60,5 +64,5 @@
     </table>
 </div>
 <div>
-    @Html.ActionLink("Volta", "Cadastramentos", "Home", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Retornar", "Cadastramentos", "Home", null, new { @class = "btn btn-primary" })
 </div>

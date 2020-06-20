@@ -9,6 +9,7 @@ namespace Boletim.Models
 {
     public class AdminViewModel
     {
+        [Key]
         [HiddenInput(DisplayValue = false)]
         public int AdminId { get; set; }
 

@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.Mvc;
 using Boletim;
 using Boletim.Models;
+using Microsoft.Owin.Security;
 using SistemaBoletim.Repositories;
 
 public class AdministradorController : Controller
@@ -43,6 +44,7 @@ public class AdministradorController : Controller
     public ActionResult VerificaSeEmailJaExiste(string Email)
     {
         var Usuario = db.Usuario.Where(u => u.Email.ToUpper() == Email.ToUpper()).FirstOrDefault();
+        ModelState.AddModelError("email", "E-mail já cadastrado na base");
         var EmailNaoExiste = true;
         if (Usuario != null)
         {
@@ -58,19 +60,25 @@ public class AdministradorController : Controller
     {
         if (ModelState.IsValid)
         {
-            Administrador administrador = new Administrador()
+            var Usuario = db.Usuario.Where(u => u.Email.ToUpper() == adminViewModel.Email.ToUpper()).FirstOrDefault();
+            if (Usuario != null)
             {
-                Nome_Administrador = adminViewModel.Nome,
-                Usuario = new Usuario()
+                ModelState.AddModelError("email", "E-mail já cadastrado na base");
+            } else { 
+                Administrador administrador = new Administrador()
                 {
-                    Email = adminViewModel.Email,
-                    HashSenha = GerarHash(adminViewModel.Senha),
-                    FlagSenhaTemp = adminViewModel.SenhaTemporaria ? "S" : "N"
-                }
-            };
-            db.Administrador.Add(administrador);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+                    Nome_Administrador = adminViewModel.Nome,
+                    Usuario = new Usuario()
+                    {
+                        Email = adminViewModel.Email,
+                        HashSenha = GerarHash(adminViewModel.Senha),
+                        FlagSenhaTemp = adminViewModel.SenhaTemporaria ? "S" : "N"
+                    }
+                };
+                db.Administrador.Add(administrador);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
 
         return View(adminViewModel);
@@ -80,24 +88,27 @@ public class AdministradorController : Controller
     [ValidateAntiForgeryToken]
     public ActionResult EditAdmin(AdminViewModel adminViewModel)
     {
+
         if (ModelState.IsValid)
         {
             Administrador admin = db.Administrador.Find(adminViewModel.AdminId);
-            Administrador administrador = new Administrador()
+
+            var Usuario = db.Usuario.Where(u => u.Email.ToUpper() == adminViewModel.Email.ToUpper()).FirstOrDefault();
+            if (Usuario != null && admin.Usuario.UsuarioId != Usuario.UsuarioId)
             {
-                Cod_Administrador = admin.Cod_Administrador,
-                Nome_Administrador = adminViewModel.Nome,
-                Usuario = new Usuario()
-                {
-                    UsuarioId = admin.Usuario.UsuarioId,
-                    Email = adminViewModel.Email,
-                    HashSenha = GerarHash(adminViewModel.Senha),
-                    FlagSenhaTemp = adminViewModel.SenhaTemporaria ? "S" : "N"
-                }
-            };
-            db.Entry(administrador).State = EntityState.Modified;
-            db.SaveChanges();
-            return RedirectToAction("Index");
+                ModelState.AddModelError("email", "E-mail já cadastrado na base");
+            }
+            else
+            {
+                admin.Nome_Administrador = adminViewModel.Nome;
+                admin.Usuario.Email = adminViewModel.Email;
+                admin.Usuario.HashSenha = GerarHash(adminViewModel.Senha);
+                admin.Usuario.FlagSenhaTemp = adminViewModel.SenhaTemporaria ? "S" : "N";
+
+                db.Entry(admin).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
         }
 
         return View(adminViewModel);
@@ -246,6 +257,54 @@ public class AdministradorController : Controller
         return View();
     }
 
+    //[Authorize(Roles = "SenhaTemporaria")]
+    [AllowAnonymous]
+    public ActionResult RedefinirSenha(int UsuarioId)
+    {
+        ViewBag.UsuarioId = UsuarioId;
+        return View();
+    }
+
+    //[Authorize(Roles ="SenhaTemporaria")]
+    [AllowAnonymous]
+    [HttpPost]
+    public ActionResult RedefinirSenha(FormCollection form)
+    {
+        int UsuarioId = Int32.Parse(form["UsuarioId"]);
+        //var Usuario = (ClaimsIdentity)User.Identity;
+        //ViewBag.UsuarioId = Usuario.Claims.Where(c => c.Type == ClaimTypes.Sid).FirstOrDefault();
+        if (form["Senha"] == form["ConfirmaSenha"])
+        {
+            
+            string novaSenha = form["Senha"];
+
+            Usuario user = db.Usuario.Find(UsuarioId);
+            user.HashSenha = GerarHash(novaSenha);
+            user.FlagSenhaTemp = "N";
+
+            db.Entry(user).State = EntityState.Modified;
+            db.SaveChanges();
+
+
+            //Desloga
+            var ctx = Request.GetOwinContext();
+            var authManager = ctx.Authentication;
+            authManager.SignOut("ApplicationCookie");
+
+            //Loga novamente
+            CriaPerfil(user, "Administrador");
+
+            return RedirectToAction("Cadastramentos", "Home");
+        } else
+        {
+            ModelState.AddModelError("ConfirmarSenha", "A Senha não confere");
+        }
+        ViewBag.UsuarioId = UsuarioId;
+        return View();
+    }
+
+
+
     [AllowAnonymous]
     [HttpPost]
     public ActionResult Login(LoginViewModel loginModel)
@@ -257,29 +316,47 @@ public class AdministradorController : Controller
         //Verifica se encontrou o usuario e se a senha cofere
         if (user != null && user.HashSenha == GerarHash(loginModel.Senha))
         {
-            string perfil = "Comum";
-            //if (user.Administrador.Count > 0)
-            //{
-                perfil = "Administrador";
-            //}
-            var identity = new ClaimsIdentity(new[]
+            if (user.FlagSenhaTemp == "S")
             {
-                    new Claim(ClaimTypes.Email, loginModel.Email),
-                    new Claim(ClaimTypes.Sid,user.UsuarioId + ""),
-                    new Claim(ClaimTypes.Role, perfil)
-                }, "ApplicationCookie");
 
-            
-            var context = Request.GetOwinContext();
-            var authManager = context.Authentication;
-            authManager.SignIn(identity);
-            return RedirectToAction("Cadastramentos", "Home");
+                CriaPerfil(user, "SenhaTemporaria");
+
+                return RedirectToAction("RedefinirSenha", new { UsuarioId = user.UsuarioId });
+            } else
+            {
+                string perfil = "Comum";
+                //if (user.Administrador.Count > 0)
+                //{
+                perfil = "Administrador";
+                //}
+
+                CriaPerfil(user, perfil);
+
+                return RedirectToAction("Cadastramentos", "Home");
+            }
         }
         else
         {
             ModelState.AddModelError(string.Empty, "E-mail ou senha inválidos");
             return View(loginModel);
         }
+    }
+
+
+    private void CriaPerfil(Usuario user, string perfil)
+    {
+        var identity = new ClaimsIdentity(new[]
+        {
+                        new Claim(ClaimTypes.Email, user.Email),
+                        new Claim(ClaimTypes.Sid, user.UsuarioId + ""),
+                        new Claim(ClaimTypes.Role, perfil)
+                    }, "ApplicationCookie");
+
+
+        var context = Request.GetOwinContext();
+        var authManager = context.Authentication;
+        authManager.SignIn(identity);
+        
     }
 
     public ActionResult LogOut()

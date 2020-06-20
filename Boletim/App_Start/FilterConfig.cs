@@ -15,6 +15,14 @@ namespace SistemaBoletim
                 Roles = "Administrador" 
 
             });
+            filters.Add(new OutputCacheAttribute 
+            { 
+           VaryByParam ="*",
+           Duration =0,
+           NoStore = true,
+            
+            }
+            );
         }
     }
 }

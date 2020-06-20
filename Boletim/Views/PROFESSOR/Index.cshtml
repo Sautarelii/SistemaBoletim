@@ -26,10 +26,12 @@
 <div class="um">
 
     <h2>Professor</h2>
-
+    <br>
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Criar Professor", "Create", new { }, new { @class = "btn btn-success" })
     </p>
+    <br>
+    <br>
     <table class="table">
         <tr>
             <th>
@@ -57,9 +59,9 @@
                     @Html.DisplayFor(modelItem => item.Usuario.Email)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.COD_PROF }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.COD_PROF }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.COD_PROF })
+                    @Html.ActionLink("Edit", "Edit", new { id = item.COD_PROF }, new { @class = "btn btn-success" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.COD_PROF }, new { @class = "btn btn-primary" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.COD_PROF }, new { @class = "btn btn-danger" })
                 </td>
             </tr>
         }
@@ -67,5 +69,5 @@
     </table>
 </div>
 <div>
-    @Html.ActionLink("Volta", "Cadastramentos", "Home", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Retornar", "Cadastramentos", "Home", null, new { @class = "btn btn-primary" })
 </div>
