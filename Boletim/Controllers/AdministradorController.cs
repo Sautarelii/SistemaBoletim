@@ -16,7 +16,7 @@ using SistemaBoletim.Repositories;
 
 public class AdministradorController : Controller
 {
-    private BoletimOnline2Entities1 db = new BoletimOnline2Entities1();
+    private BoletimOnline2Entities3 db = new BoletimOnline2Entities3();
 
 
     // GET: Administrador
@@ -325,12 +325,18 @@ public class AdministradorController : Controller
             } else
             {
                 string perfil = "Comum";
-                //if (user.Administrador.Count > 0)
-                //{
-                perfil = "Administrador";
-                //}
+                if (user.Administrador.Count > 0)
+                {
+                    perfil = "Administrador";
+                } else if (user.ALUNO.Count > 0)
+                {
+                    perfil = "ALUNO";
+                } else if (user.PROFESSOR.Count > 0)
+                {
+                    perfil = "PROFESSOR";
+                }
 
-                CriaPerfil(user, perfil);
+                    CriaPerfil(user, perfil);
 
                 return RedirectToAction("Cadastramentos", "Home");
             }

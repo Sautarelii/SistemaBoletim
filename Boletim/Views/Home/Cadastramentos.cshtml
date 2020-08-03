@@ -8,15 +8,41 @@
         margin: 100px;
     }
 
-    .um {
-        width: 100%;
-        color: #000;
-        border: 4px solid #000;
-        height: 900px;
-        background-color: white;
-        border-radius: 25px;
-        box-sizing: border-box;
-    }
+        .um {
+            color: #000;
+            border: 4px solid #000;
+            height: 900px;
+            width: 100%;
+            background-color: white;
+            border-radius: 25px;
+            box-sizing: border-box;
+        }
+        .btn-custom {
+            padding: 1px 15px 3px 2px;
+            border-radius: 50px;
+        }
+
+        .btn-icon {
+            padding: 8px;
+            background: #ffffff;
+        }
+        div.a {
+            background-image: url(../../Content/img/aluno.jpg);
+           height:160px;
+ }
+        div.b {
+            background-image: url(../../Content/img/Professorr.png);
+            height: 160px;
+        }
+        
+        div.C {
+            background-image: url(../../Content/img/TURMA.png);
+            height: 160px;
+        }
+        div.DD{
+            background-image: url(../../Content/img/Boletim.png);
+            height: 160px;
+        }
 </style>
 <body>
 
@@ -30,33 +56,47 @@
         </center>
         <br />
 
-        <h1>Cadastrar Aluno</h1>
+        <div class="a">
+            <h1>Cadastrar Aluno</h1>
+            <br />
+            <a href="~/ALUNO/" class="btn btn-primary btn-custom">
+                <span class="glyphicon glyphicon-ok img-circle text-primary btn-icon"></span>
+                Cadastrar
+            </a>
+        </div>
 
-        @Html.ActionLink("Cadastrar", "Index", "Aluno", null, new { @class = "btn btn-primary" })
+        <div class="b">
+            <h1>Cadastrar Professor </h1>
+            <br />
+            <a href="~/Professor/" class="btn btn-primary btn-custom">
+                <span class="glyphicon glyphicon-ok img-circle text-primary btn-icon"></span>
+                Cadastrar
+            </a>
+        </div>
+
+        <div class="C">
+            <h1>Cadastrar Turma</h1>
+            <br />
+            <a href="~/Turma/" class="btn btn-primary btn-custom">
+                <span class="glyphicon glyphicon-ok img-circle text-primary btn-icon"></span>
+                Cadastrar
+            </a>
+        </div>
         <br />
-        <br />
-        <br />
-        <h1>Cadastrar Professor </h1>
-        <br />
-        @Html.ActionLink("Cadastrar", "Index", "Professor", null, new { @class = "btn btn-primary" })
-        <br />
-        <br />
-        <br />
-        <br />
-        <h1>Cadastrar Turma</h1>
-        <br />
-        @Html.ActionLink("Cadastrar", "Index", "Turma", null, new { @class = "btn btn-primary" })
-        <br />
-        <br />
-        <br />
-        <h1>Cadastrar Materia</h1>
-        <br />
-        @Html.ActionLink("Cadastrar", "Index", "Materia", null, new { @class = "btn btn-primary" })
-        <br />
-        <br />
-        <br />
-        
+       
+        <div class="DD">
+            <h1>Cadastrar Materia</h1>
+            <br />
+            <a href="~/Materia/" class="btn btn-primary btn-custom">
+                <span class="glyphicon glyphicon-ok img-circle text-primary btn-icon"></span>
+                Cadastrar
+            </a>
+        </div>
+       
      
+        <br />
+
+
 
     </div>
 </body>

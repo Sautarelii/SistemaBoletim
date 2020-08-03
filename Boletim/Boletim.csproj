@@ -158,6 +158,7 @@
     <Compile Include="Controllers\CadastroEntities.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MATERIAController.cs" />
+    <Compile Include="Controllers\NOTAController.cs" />
     <Compile Include="Controllers\PROFESSORController.cs" />
     <Compile Include="Controllers\PROFMATERIATURMAController.cs" />
     <Compile Include="Controllers\TURMAController.cs" />
@@ -183,7 +184,10 @@
       <DependentUpon>ModelBoletimOnline.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\AdminViewModel.cs" />
+    <Compile Include="Models\AlunoViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
+    <Compile Include="Models\ProfessorViewModel.cs" />
+    <Compile Include="Models\PROFMATERIATURMA.cs" />
     <Compile Include="NOTA.cs">
       <DependentUpon>ModelBoletimOnline.tt</DependentUpon>
     </Compile>
@@ -212,11 +216,17 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\img\aluno.jpg" />
+    <Content Include="Content\img\B.png" />
+    <Content Include="Content\img\Boletim.png" />
     <Content Include="Content\img\estudo.jpg" />
     <Content Include="Content\img\estudos2.png" />
     <Content Include="Content\img\estudos3.png" />
+    <Content Include="Content\img\Index.jpg" />
     <Content Include="Content\img\Logo.png" />
     <Content Include="Content\img\logoo.png" />
+    <Content Include="Content\img\Professorr.png" />
+    <Content Include="Content\img\TURMA.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -299,14 +309,23 @@
     <Content Include="Views\AVALIACAO\Details.cshtml" />
     <Content Include="Views\AVALIACAO\Edit.cshtml" />
     <Content Include="Views\AVALIACAO\Index.cshtml" />
+    <Content Include="Views\Administrador\CreateAdmin.cshtml" />
+    <Content Include="Views\Administrador\EditAdmin.cshtml" />
+    <Content Include="Views\Administrador\RedefinirSenha.cshtml" />
+    <Content Include="Views\ALUNO\CreateAluno.cshtml" />
+    <Content Include="Views\PROFESSOR\CreateProfessor.cshtml" />
+    <Content Include="Views\ALUNO\EditAluno.cshtml" />
+    <Content Include="Views\PROFESSOR\EditProfessor.cshtml" />
+    <Content Include="Views\NOTA\Create.cshtml" />
+    <Content Include="Views\NOTA\Delete.cshtml" />
+    <Content Include="Views\NOTA\Details.cshtml" />
+    <Content Include="Views\NOTA\Edit.cshtml" />
+    <Content Include="Views\NOTA\Index.cshtml" />
     <Content Include="Views\PROFMATERIATURMA\Create.cshtml" />
     <Content Include="Views\PROFMATERIATURMA\Delete.cshtml" />
     <Content Include="Views\PROFMATERIATURMA\Details.cshtml" />
     <Content Include="Views\PROFMATERIATURMA\Edit.cshtml" />
     <Content Include="Views\PROFMATERIATURMA\Index.cshtml" />
-    <Content Include="Views\Administrador\CreateAdmin.cshtml" />
-    <Content Include="Views\Administrador\EditAdmin.cshtml" />
-    <Content Include="Views\Administrador\RedefinirSenha.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

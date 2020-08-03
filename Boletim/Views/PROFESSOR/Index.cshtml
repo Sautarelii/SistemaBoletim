@@ -28,15 +28,12 @@
     <h2>Professor</h2>
     <br>
     <p>
-        @Html.ActionLink("Criar Professor", "Create", new { }, new { @class = "btn btn-success" })
+        @Html.ActionLink("Criar Professor", "CreateProfessor", new { }, new { @class = "btn btn-success" })
     </p>
     <br>
     <br>
     <table class="table">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.EMAIL_PROFESSOR)
-            </th>
             <th>
                 @Html.DisplayNameFor(model => model.NOME)
             </th>
@@ -50,24 +47,21 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.EMAIL_PROFESSOR)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.NOME)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Usuario.Email)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.COD_PROF }, new { @class = "btn btn-success" }) |
+                <td>
+                    @Html.ActionLink("Edit", "EditProfessor", new { id = item.COD_PROF }, new { @class = "btn btn-success" }) |
                     @Html.ActionLink("Details", "Details", new { id = item.COD_PROF }, new { @class = "btn btn-primary" }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.COD_PROF }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.COD_PROF}, new { @class = "btn btn-danger" })
                 </td>
             </tr>
         }
 
     </table>
-</div>
 <div>
     @Html.ActionLink("Retornar", "Cadastramentos", "Home", null, new { @class = "btn btn-primary" })
 </div>

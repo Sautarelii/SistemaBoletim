@@ -22,7 +22,6 @@ namespace Boletim
         }
     
         public int COD_PROF { get; set; }
-        public string EMAIL_PROFESSOR { get; set; }
         public string NOME { get; set; }
         public Nullable<int> UsuarioId { get; set; }
     

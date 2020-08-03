@@ -4,16 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e202bf75d74d4d0fb1f9da9f06476244" Name="Diagram1">
+      <Diagram DiagramId="cbf7757130c04fd9a57b52dc998d9085" Name="Diagram1">
         <EntityTypeShape EntityType="BoletimOnline2Model.Administrador" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BoletimOnline2Model.ALUNO" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BoletimOnline2Model.AVALIACAO" Width="1.5" PointX="9.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoletimOnline2Model.ALUNO" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoletimOnline2Model.AVALIACAO" Width="1.5" PointX="9.75" PointY="12.125" IsExpanded="true" />
         <EntityTypeShape EntityType="BoletimOnline2Model.MATERIA" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="BoletimOnline2Model.NOTA" Width="1.5" PointX="7.5" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="BoletimOnline2Model.PROFESSOR" Width="1.5" PointX="3" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="BoletimOnline2Model.PROFMATERIATURMA" Width="1.5" PointX="7.5" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoletimOnline2Model.PROFESSOR" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoletimOnline2Model.PROFMATERIATURMA" Width="1.5" PointX="7.5" PointY="12.375" IsExpanded="true" />
         <EntityTypeShape EntityType="BoletimOnline2Model.TURMA" Width="1.5" PointX="5.25" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="BoletimOnline2Model.Usuario" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BoletimOnline2Model.Usuario" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
         <AssociationConnector Association="BoletimOnline2Model.FK__Administr__Usuar__145C0A3F" ManuallyRouted="false" />
         <AssociationConnector Association="BoletimOnline2Model.FK__ALUNO__UsuarioId__1DE57479" ManuallyRouted="false" />
         <AssociationConnector Association="BoletimOnline2Model.FK_PROFTURMA_ATV" ManuallyRouted="false" />

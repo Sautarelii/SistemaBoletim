@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<Boletim.ALUNO>
-
 @{
     ViewBag.Title = "Index";
 }
@@ -27,46 +26,39 @@
     <h2>Aluno</h2>
     <br>
     <p>
-        @Html.ActionLink("Criar novo Aluno", "Create", new { }, new { @class = "btn btn-success" })
+        @Html.ActionLink("Criar novo Aluno", "CreateAluno", new { }, new { @class = "btn btn-success" })
         <br>
         <br>
-
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.EMAIL_ALUNO)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NOME)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Usuario.Email)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
+        <table class="table">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.EMAIL_ALUNO)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.NOME)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Usuario.Email)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.COD_ALUNO }, new { @class = "btn btn-success" }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.COD_ALUNO }, new { @class = "btn btn-primary" }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.COD_ALUNO }, new { @class = "btn btn-danger" })
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.NOME)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Usuario.Email)
+                </th>
+                <th></th>
             </tr>
-        }
 
-    </table>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NOME)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Usuario.Email)
+                    </td>
+                    <td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditAluno", new { id = item.COD_ALUNO}, new { @class = "btn btn-success" }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.COD_ALUNO }, new { @class = "btn btn-primary" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.COD_ALUNO }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+            }
+
+        </table>
 
 </div>
 <div>

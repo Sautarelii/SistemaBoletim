@@ -1,42 +1,34 @@
-﻿@model Boletim.PROFMATERIATURMA
+﻿@model Boletim.Models.PROFMATERIATURMA
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Detalhe</h2>
+<h2>Details</h2>
 
 <div>
     <h4>PROFMATERIATURMA</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.MATERIA.NOME)
+            @Html.DisplayNameFor(model => model.Nome)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.MATERIA.NOME)
+            @Html.DisplayFor(model => model.Nome)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PROFESSOR.EMAIL_PROFESSOR)
+            @Html.DisplayNameFor(model => model.Email)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PROFESSOR.EMAIL_PROFESSOR)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TURMA.SERIE)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TURMA.SERIE)
+            @Html.DisplayFor(model => model.Email)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Voltar", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PROFMATERIATURMAid }) |
+    @Html.ActionLink("Back to List", "Index")
 </p>

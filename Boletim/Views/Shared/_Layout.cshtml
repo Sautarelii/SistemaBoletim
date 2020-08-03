@@ -11,6 +11,21 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
+<style>
+    .btn-custom {
+        padding: 0px 0px 0px 0px;
+        border-radius: 10px;
+    
+      
+    }
+
+    .btn-icon {
+        padding: 8px;
+        background: #ffffff;
+        left: 2px;
+
+    }
+</style>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
@@ -20,7 +35,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Boletim Online", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+                @Html.ActionLink("Boletim Online","", "", new { area = "" }, new { @class = "navbar-brand" })
                 
 
             </div>
@@ -32,31 +48,57 @@
                     }
                     @if (Usuario.IsAuthenticated)
                     {
-
-                    <li>@Html.ActionLink("Administrador", "Index", "Administrador")</li>
+                        //Administrador
+                        <li>@Html.ActionLink("Administrador", "Index", "Administrador")</li>
                         <li>@Html.ActionLink("Cadastramentos", "Cadastramentos", "Home")</li>
-                        <li>@Html.ActionLink("Atribuição", "Index", "PROFMATERIATURMA")</li>
+                        <li>@Html.ActionLink("Atribuiçãoo", "Index", "PROFMATERIATURMA")</li>
+
                     }
 
-                </ul>
 
-
-                <ul class="nav navbar-nav navbar-right">
-                    @if (Usuario.IsAuthenticated)
+                    @if (Usuario.Claims.Any(
+                    c => c.Type == ClaimTypes.Role
+                    && c.Value == "Aluno"))
                     {
-                        <li class="email_usuario">
-                            @Usuario.Claims.Where(
-                            c => c.Type == ClaimTypes.Email
-                            ).FirstOrDefault().Value
-                        </li>
-
-                        <li>@Html.ActionLink("Sair", "LogOut", "Administrador")</li>
-
+                        <li>@Html.ActionLink("Visualizar Nota", "Index", "PROFESSOR")</li>
                     }
-
                 </ul>
+
+
+                @if (Usuario.Claims.Any(
+                c => c.Type == ClaimTypes.Role
+                && c.Value == "Professor"))
+                {
+                    <li>@Html.ActionLink("Nota", "Index", "Nota")</li>
+                    
+                }
+
+
+
+
+
+            <ul class="nav navbar-nav navbar-right">
+                @if (Usuario.IsAuthenticated)
+                {
+                    <li class="email_usuario">
+                        @Usuario.Claims.Where(
+                        c => c.Type == ClaimTypes.Email
+                        ).FirstOrDefault().Value
+                    </li>
+
+
+                    <a href="~/Administrador/Login" class=" btn-custom">
+                        <span class="glyphicon glyphicon-off img-circle text-warning btn-icon"></span>
+
+                    </a>
+
+
+                }
+
+
+            </ul>
             </div>
-        </div>
+</div>
     </div>
 
     <div class="container body-content">

@@ -11,13 +11,16 @@ namespace SistemaBoletim.Repositories
 {
     public class UsuarioRepository : IDisposable
     {
-        private readonly BoletimOnline2Entities1 db;
+        private readonly BoletimOnline2Entities3 db;
         private bool disposed = false;
+        private BoletimOnline2Entities3 db1;
 
-        public UsuarioRepository(BoletimOnline2Entities1 context)
+        public UsuarioRepository(BoletimOnline2Entities3 context)
         {
             this.db = context;
         }
+
+
         public IEnumerable<Usuario> BuscarTodos()
         {
             return db.Usuario
@@ -31,6 +34,9 @@ namespace SistemaBoletim.Repositories
         public Usuario BuscarPorEmail(string email)
         {
             return db.Usuario
+                .Include(u => u.ALUNO)
+                .Include(u => u.PROFESSOR)
+                .Include(u => u.Administrador)
                 .Where(u => u.Email == email)
               
                 .FirstOrDefault();

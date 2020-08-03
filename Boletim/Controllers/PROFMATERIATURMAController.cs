@@ -7,19 +7,19 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Boletim;
-
+using Boletim.Models;
 namespace Boletim.Controllers
 {
     public class PROFMATERIATURMAController : Controller
     {
-        private BoletimOnline2Entities1 db = new BoletimOnline2Entities1();
+        private BoletimOnline2Entities3 db = new BoletimOnline2Entities3();
 
         // GET: PROFMATERIATURMA
         public ActionResult Index()
         {
-            var pROFMATERIATURMA = db.PROFMATERIATURMA.Include(p => p.MATERIA).Include(p => p.PROFESSOR).Include(p => p.TURMA);
-            return View(pROFMATERIATURMA.ToList());
+            return View(db.PROFMATERIATURMA.ToList());
         }
+     
 
         // GET: PROFMATERIATURMA/Details/5
         public ActionResult Details(int? id)
@@ -28,7 +28,7 @@ namespace Boletim.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PROFMATERIATURMA pROFMATERIATURMA = db.PROFMATERIATURMA.Find(id);
+            PROFMATERIATURMA pROFMATERIATURMA = db.PROFMATERIATURMA.Find();
             if (pROFMATERIATURMA == null)
             {
                 return HttpNotFound();
@@ -39,9 +39,6 @@ namespace Boletim.Controllers
         // GET: PROFMATERIATURMA/Create
         public ActionResult Create()
         {
-            ViewBag.COD_MATERIA = new SelectList(db.MATERIA, "COD_MATERIA", "NOME");
-            ViewBag.COD_PROF = new SelectList(db.PROFESSOR, "COD_PROF", "EMAIL_PROFESSOR");
-            ViewBag.COD_TURMA = new SelectList(db.TURMA, "COD_TURMA", "SERIE");
             return View();
         }
 
@@ -50,7 +47,7 @@ namespace Boletim.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "COD_PROF,COD_MATERIA,COD_TURMA,PERIODO_LETIVO")] PROFMATERIATURMA pROFMATERIATURMA)
+        public ActionResult Create([Bind(Include = "PROFMATERIATURMAid,Nome,Email")] PROFMATERIATURMA pROFMATERIATURMA)
         {
             if (ModelState.IsValid)
             {
@@ -59,9 +56,6 @@ namespace Boletim.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.COD_MATERIA = new SelectList(db.MATERIA, "COD_MATERIA", "NOME", pROFMATERIATURMA.COD_MATERIA);
-            ViewBag.COD_PROF = new SelectList(db.PROFESSOR, "COD_PROF", "EMAIL_PROFESSOR", pROFMATERIATURMA.COD_PROF);
-            ViewBag.COD_TURMA = new SelectList(db.TURMA, "COD_TURMA", "SERIE", pROFMATERIATURMA.COD_TURMA);
             return View(pROFMATERIATURMA);
         }
 
@@ -77,9 +71,6 @@ namespace Boletim.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.COD_MATERIA = new SelectList(db.MATERIA, "COD_MATERIA", "NOME", pROFMATERIATURMA.COD_MATERIA);
-            ViewBag.COD_PROF = new SelectList(db.PROFESSOR, "COD_PROF", "EMAIL_PROFESSOR", pROFMATERIATURMA.COD_PROF);
-            ViewBag.COD_TURMA = new SelectList(db.TURMA, "COD_TURMA", "SERIE", pROFMATERIATURMA.COD_TURMA);
             return View(pROFMATERIATURMA);
         }
 
@@ -88,7 +79,7 @@ namespace Boletim.Controllers
         // obter mais detalhes, consulte https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "COD_PROF,COD_MATERIA,COD_TURMA,PERIODO_LETIVO")] PROFMATERIATURMA pROFMATERIATURMA)
+        public ActionResult Edit([Bind(Include = "PROFMATERIATURMAid,Nome,Email")] PROFMATERIATURMA pROFMATERIATURMA)
         {
             if (ModelState.IsValid)
             {
@@ -96,9 +87,6 @@ namespace Boletim.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.COD_MATERIA = new SelectList(db.MATERIA, "COD_MATERIA", "NOME", pROFMATERIATURMA.COD_MATERIA);
-            ViewBag.COD_PROF = new SelectList(db.PROFESSOR, "COD_PROF", "EMAIL_PROFESSOR", pROFMATERIATURMA.COD_PROF);
-            ViewBag.COD_TURMA = new SelectList(db.TURMA, "COD_TURMA", "SERIE", pROFMATERIATURMA.COD_TURMA);
             return View(pROFMATERIATURMA);
         }
 

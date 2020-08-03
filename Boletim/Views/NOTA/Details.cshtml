@@ -1,0 +1,58 @@
+﻿@model Boletim.NOTA
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>NOTA</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.COD_ALUNO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.COD_ALUNO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VALOR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VALOR)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MATERIA.NOME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MATERIA.NOME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PROFESSOR.NOME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PROFESSOR.NOME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TURMA.SERIE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TURMA.SERIE)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.COD_NOTA }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

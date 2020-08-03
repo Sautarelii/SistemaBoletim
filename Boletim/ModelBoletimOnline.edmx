@@ -18,7 +18,6 @@
             <PropertyRef Name="COD_ALUNO" />
           </Key>
           <Property Name="COD_ALUNO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EMAIL_ALUNO" Type="varchar" MaxLength="90" />
           <Property Name="NOME" Type="varchar" MaxLength="100" />
           <Property Name="UsuarioId" Type="int" />
         </EntityType>
@@ -67,7 +66,6 @@
             <PropertyRef Name="COD_PROF" />
           </Key>
           <Property Name="COD_PROF" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EMAIL_PROFESSOR" Type="varchar" MaxLength="90" />
           <Property Name="NOME" Type="varchar" MaxLength="100" />
           <Property Name="UsuarioId" Type="int" />
         </EntityType>
@@ -370,7 +368,6 @@
             <PropertyRef Name="COD_ALUNO" />
           </Key>
           <Property Name="COD_ALUNO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EMAIL_ALUNO" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
           <Property Name="NOME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="UsuarioId" Type="Int32" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK__ALUNO__UsuarioId__1DE57479" FromRole="ALUNO" ToRole="Usuario" />
@@ -421,7 +418,6 @@
             <PropertyRef Name="COD_PROF" />
           </Key>
           <Property Name="COD_PROF" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EMAIL_PROFESSOR" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
           <Property Name="NOME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="UsuarioId" Type="Int32" />
           <NavigationProperty Name="NOTA" Relationship="Self.FK__NOTA__COD_PROF__2C3393D0" FromRole="PROFESSOR" ToRole="NOTA" />
@@ -601,7 +597,7 @@
           <End Role="ALUNO" Type="Self.ALUNO" Multiplicity="*" />
           <End Role="TURMA" Type="Self.TURMA" Multiplicity="*" />
         </Association>
-        <EntityContainer Name="BoletimOnline2Entities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="BoletimOnline2Entities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Administrador" EntityType="Self.Administrador" />
           <EntitySet Name="ALUNO" EntityType="Self.ALUNO" />
           <EntitySet Name="AVALIACAO" EntityType="Self.AVALIACAO" />
@@ -665,7 +661,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="BoletimOnline2ModelStoreContainer" CdmEntityContainer="BoletimOnline2Entities1">
+        <EntityContainerMapping StorageEntityContainer="BoletimOnline2ModelStoreContainer" CdmEntityContainer="BoletimOnline2Entities3">
           <EntitySetMapping Name="Administrador">
             <EntityTypeMapping TypeName="BoletimOnline2Model.Administrador">
               <MappingFragment StoreEntitySet="Administrador">
@@ -679,7 +675,6 @@
             <EntityTypeMapping TypeName="BoletimOnline2Model.ALUNO">
               <MappingFragment StoreEntitySet="ALUNO">
                 <ScalarProperty Name="COD_ALUNO" ColumnName="COD_ALUNO" />
-                <ScalarProperty Name="EMAIL_ALUNO" ColumnName="EMAIL_ALUNO" />
                 <ScalarProperty Name="NOME" ColumnName="NOME" />
                 <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
               </MappingFragment>
@@ -724,7 +719,6 @@
             <EntityTypeMapping TypeName="BoletimOnline2Model.PROFESSOR">
               <MappingFragment StoreEntitySet="PROFESSOR">
                 <ScalarProperty Name="COD_PROF" ColumnName="COD_PROF" />
-                <ScalarProperty Name="EMAIL_PROFESSOR" ColumnName="EMAIL_PROFESSOR" />
                 <ScalarProperty Name="NOME" ColumnName="NOME" />
                 <ScalarProperty Name="UsuarioId" ColumnName="UsuarioId" />
               </MappingFragment>

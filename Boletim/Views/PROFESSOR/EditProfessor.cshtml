@@ -1,23 +1,26 @@
-﻿@model Boletim.Models.AlunoViewModel
+﻿@model Boletim.Models.ProfessorViewModel
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "CreateProfessor";
 }
 
-<h2>Editar</h2>
+<h2>EditProfessor</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
-        <h4>AdminViewModel</h4>
+
+        <h4>ProfessorViewModel</h4>
+
         <hr />
 
-        @Html.HiddenFor(model => model.Alunoid)
 
+   
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
+            
             @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
@@ -67,11 +70,7 @@
     </div>
 }
 
+
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

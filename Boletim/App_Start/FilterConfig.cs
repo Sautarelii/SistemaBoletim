@@ -12,7 +12,7 @@ namespace SistemaBoletim
             filters.Add(new HandleErrorAttribute());
             filters.Add(new AuthorizeAttribute()
             {
-                Roles = "Administrador" 
+                Roles = "Administrador,ALUNO,PROFESSOR"
 
             });
             filters.Add(new OutputCacheAttribute 

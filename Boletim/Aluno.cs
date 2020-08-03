@@ -20,9 +20,13 @@ namespace Boletim
             this.NOTA = new HashSet<NOTA>();
             this.TURMA = new HashSet<TURMA>();
         }
-    
+
+        internal static object ToList()
+        {
+            throw new NotImplementedException();
+        }
+
         public int COD_ALUNO { get; set; }
-        public string EMAIL_ALUNO { get; set; }
         public string NOME { get; set; }
         public Nullable<int> UsuarioId { get; set; }
     

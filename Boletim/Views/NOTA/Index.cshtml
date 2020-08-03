@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Boletim.NOTA>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.COD_ALUNO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VALOR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MATERIA.NOME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PROFESSOR.NOME)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TURMA.SERIE)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.COD_ALUNO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VALOR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MATERIA.NOME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PROFESSOR.NOME)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TURMA.SERIE)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.COD_NOTA }) |
+            @Html.ActionLink("Details", "Details", new { id=item.COD_NOTA }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.COD_NOTA })
+        </td>
+    </tr>
+}
+
+</table>

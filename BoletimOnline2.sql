@@ -23,7 +23,6 @@ CREATE TABLE Administrador(
 
 CREATE TABLE PROFESSOR(
 COD_PROF INT IDENTITY(1,1),
-EMAIL_PROFESSOR VARCHAR(90),
 NOME VARCHAR(100),
  UsuarioId int NULL references Usuario(UsuarioId)
  
@@ -61,7 +60,6 @@ SELECT * FROM TURMA
 
 CREATE TABLE ALUNO(
 	COD_ALUNO INT IDENTITY(1,1),
-	EMAIL_ALUNO VARCHAR(90),
 	NOME VARCHAR(100),
 	 UsuarioId int NULL references Usuario(UsuarioId)
  
@@ -150,4 +148,56 @@ insert into Usuario (Email,HashSenha,FlagSenhaTemp) values ('adm@gmail.com','81d
 Insert Administrador (Nome_Administrador,UsuarioId) values ('Prof', 2) 
 
 
-Select * from PROFMATERIATURMA
+
+
+Select * from ALUNO
+
+
+Select * from PROFESSOR
+
+
+Select * from TURMA
+
+
+Select * from MATERIA
+
+
+Select * from Usuario
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
